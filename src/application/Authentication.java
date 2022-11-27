@@ -19,21 +19,21 @@ public class Authentication {
 			
 			ResultSet res = obj.checkLogin(username);
 			
-			System.out.println(res.getString("Password"));			
+			//System.out.println(res.getString("Password"));			
 
-			if(res.next()) {
-				if(pass.equals(res.getString("Password"))) {
-					if(res.getInt("Permission") == 1) {
-						System.out.println("Admin Logged In Sucessfully");			
-					}else {
-						System.out.println("You have Logged In Successfully");
-					}
-					return new Admin(res.getString("Username"), res.getString("Password"), Integer.toString(res.getInt("Permission")));
+			
+			if(pass.equals(res.getString("Password"))) {
+				if(res.getInt("Permission") == 1) {
+					System.out.println("Admin Logged In Sucessfully");			
 				}else {
-					System.out.println("Wrong Email or Password");
+					System.out.println("You have Logged In Successfully");
 				}
-				
+				return new Admin(res.getString("Username"), res.getString("Password"), Integer.toString(res.getInt("Permission")));
+			}else {
+				System.out.println("Wrong Email or Password");
 			}
+				
+			
 
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
