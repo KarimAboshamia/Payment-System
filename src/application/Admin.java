@@ -6,6 +6,7 @@ public class Admin extends AppUser{
 		super(username, password, permission);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }
 
