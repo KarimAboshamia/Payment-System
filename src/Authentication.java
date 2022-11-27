@@ -43,7 +43,15 @@ public class Authentication {
 		return null;
 	}
 	
-	public void signUp(String username, String password, String permission) {
+	public void signUp(String username, String password, int permission) {
+		
+		int signUpRes = obj.signUp(username, password, permission);
+		if(signUpRes == 1) {
+			System.out.println("Signed UP");
+		}else {
+			System.out.println("This username is already used");
+		}
+		
 		
 	}
 

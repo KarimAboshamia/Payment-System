@@ -35,8 +35,9 @@ public class DBConnection {
 		return null;	
 	}
 	
-	public boolean signUp(String username, String password, int permission) {
+	public int signUp(String username, String password, int permission) {
 		MessageDigest md;
+		int executionCondition = 0;
 		try {
 			md = MessageDigest.getInstance("MD5");
 			byte[] result = md.digest(password.getBytes());
@@ -44,25 +45,26 @@ public class DBConnection {
 			String pass = new String(result);
 			System.out.println(pass);
 			
-			String query = "INSERT INTO Users VALUES(" + "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
-
-			try {
-				statement.executeUpdate(query);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			String query1 = "select * from Users WHERE Username = '" + username + "'";
+			String query2 = "INSERT INTO Users VALUES(" + "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
+			ResultSet rs = statement.executeQuery(query1);
+			if(rs.getString("Username") == null) {
+				executionCondition = statement.executeUpdate(query2);
+		
+			} else {
+				executionCondition = 0;
 			}
 			
-			
-			
+		}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 		}catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return false;
+		return executionCondition;
 	}
 	
-
 }
 
