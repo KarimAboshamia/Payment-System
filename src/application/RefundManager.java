@@ -1,8 +1,9 @@
 package application;
 
 public class RefundManager {
-	public static void handleRefund (String username, String service, String serviceProv)
-	{
-		
+	private DBConnection newdb = new DBConnection();
+	public static void handleRefund (String usrname, int transId )
+	{ 
+		newdb.insertRefund(usrname, transId);
 	}
 }

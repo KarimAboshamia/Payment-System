@@ -81,4 +81,23 @@ public class DBConnection {
 		}
 	}
 	
+	//search for service function
+		public ResultSet GetServices(){
+			String nameQuery="select * from Services"; 
+			ResultSet rs=null;
+			try {
+				 rs=statement.executeQuery(nameQuery);
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return rs;
+			
+		}
+		
+		public insertRefund(String usrname, int transId )
+		{
+			String newQuery= "insert into RefundReq (Username, State, TransactionID, Changed) values (usrname, 0, transId, 0);";
+		}
 }
