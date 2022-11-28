@@ -95,4 +95,41 @@ public class DBConnection {
 			return rs;
 			
 		}
+
+		
+		public void insertRefund(String usrname, int transId )
+		{
+			String newQuery= "insert into RefundReq (Username, State, TransactionID, Changed) values (usrname, 0, transId, 0);";
+		}
+		
+		public ResultSet getRefunds()
+		{
+			String nquery = "SELECT RefundReq.Username, Transactions.Service, Transactions.SeriveProv, Transactions.amount"
+					+ "FROM Transactions"
+					+ "INNER JOIN RefundReq"
+					+ "ON Transactions.TransactionID=RefundReq.TransactionID"
+					+ "WHERE State=0;";
+			
+			ResultSet res=null;
+			try {
+				res = statement.executeQuery(nquery);			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return res;
+		}
+		
+		public void updateState(int newState, int refundID)
+		{
+			String nquery = "UPDATE RefundReq"
+					+ "SET State = '"+newState+"', Changed = 1"
+					+ "WHERE State=0 AND RefundID=refundID;";
+			try {
+				statement.executeUpdate(nquery);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }
