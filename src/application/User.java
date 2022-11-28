@@ -2,6 +2,7 @@ package application;
 
 
 public class User extends AppUser{
+	RefundManager refm = new RefundManager();
 	public User(String username, String password, String permission) {
 		super(username, password, permission);
 		// TODO Auto-generated constructor stub
@@ -9,7 +10,7 @@ public class User extends AppUser{
 	
 	public void requestRefund(String username, int transId)
 	{
-		RefundManager.handleRefund(username,transId);
+		refm.handleRefund(username,transId);
 	}
 
 }
