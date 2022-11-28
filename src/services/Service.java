@@ -5,5 +5,8 @@ public class Service {
 	public Service(String n) {
 		this.name=n;
 	}
+	public String getName() {
+		return this.name;
+	}
 
 }
