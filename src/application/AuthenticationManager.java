@@ -4,11 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AuthenticationManager {//Manager
-	private DBConnection obj = new DBConnection();
+	private DBConnection authObj = new DBConnection();
 	
-	public AppUser login(String username, String password) {
+	public AppUser login(String email, String password) {
 		//Query database with name and hashed password
 		MessageDigest md;
 		try {
@@ -17,18 +18,20 @@ public class AuthenticationManager {//Manager
 			
 			String pass = new String(result); //Convert Byte Array to String
 			
-			ResultSet res = obj.checkLogin(username);
+			ResultSet res = authObj.checkLogin(email);
 			
 			//System.out.println(res.getString("Password"));			
 
 			
 			if(pass.equals(res.getString("Password"))) {
 				if(res.getInt("Permission") == 1) {
-					System.out.println("Admin Logged In Sucessfully");			
+					System.out.println("Admin Logged In Sucessfully");	
+					return new Admin(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 				}else {
 					System.out.println("You have Logged In Successfully");
+					return new User(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+
 				}
-				return new Admin(res.getString("Username"), res.getString("Password"), Integer.toString(res.getInt("Permission")));
 			}else {
 				System.out.println("Wrong Email or Password");
 			}
@@ -45,16 +48,19 @@ public class AuthenticationManager {//Manager
 		return null;
 	}
 	
-	public void signUp(String username, String password, int permission) {
+	public int signUp(String email, String username, String password, int permission) {
 		
-		int signUpRes = obj.signUp(username, password, permission);
-		if(signUpRes == 1) {
-			System.out.println("Signed UP");
-		}else {
-			System.out.println("This username is already used");
+		ArrayList<String> signUpRes = authObj.signUp(email, username, password, permission);
+		if(signUpRes.get(0) != null) {
+			return 0;
+		}
+		else if(signUpRes.get(1) != null) {
+			return -1;
 		}
 		
+		authObj.signUpExecute(email, username, password, permission);			
 		
+		return 1;
 	}
 
 }

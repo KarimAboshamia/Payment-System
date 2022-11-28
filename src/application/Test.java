@@ -5,8 +5,8 @@ public class Test {
 		AuthenticationManager obj = new AuthenticationManager();
 		DBConnection obj2 = new DBConnection();
 		//obj2.signUp("user6", "password5", 0);
-		//obj.signUp("user12", "password4", 0);
-		obj.login("user12", "password4");
+		System.out.println(obj.signUp("user45@gmail.com", "user21", "password4", 0));
+		//obj.login("user12", "password4");
 	}
 
 }

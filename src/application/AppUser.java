@@ -1,6 +1,6 @@
 package application;
 
-public class AppUser {
+public abstract class AppUser {
 	private String password;
 	private String username;
 	private String permission;
