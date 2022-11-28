@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
+import services.Service;
 
 public class DBConnection {
 	private Connection connection;
