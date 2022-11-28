@@ -10,6 +10,11 @@ public class Admin extends AppUser{
 	public void listRefunds(){
 		rman.getRef();
 	}
+	
+	public void changeState(int newState, int refundID)
+	{
+		rman.updateState(newState, refundID);
+	}
 
 }
 
