@@ -99,7 +99,13 @@ public class DBConnection {
 		
 		public void insertRefund(String usrname, int transId )
 		{
-			String newQuery= "insert into RefundReq (Username, State, TransactionID, Changed) values (usrname, 0, transId, 0);";
+			String newQuery= "insert into RefundReq (Username, State, TransactionID, Changed) values ('"+usrname+"', 0, '"+transId+"', 0);";
+			try {
+				statement.executeUpdate(newQuery);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		public ResultSet getRefunds()

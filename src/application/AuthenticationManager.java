@@ -26,10 +26,10 @@ public class AuthenticationManager {//Manager
 			if(pass.equals(res.getString("Password"))) {
 				if(res.getInt("Permission") == 1) {
 					System.out.println("Admin Logged In Sucessfully");	
-					return new Admin(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+					return new Admin(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 				}else {
 					System.out.println("You have Logged In Successfully");
-					return new User(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+					return new User(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 
 				}
 			}else {
