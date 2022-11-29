@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import db.DBConnection;
 
 public class RefundManager {
-	private DBConnection newdb = new DBConnection();
+	private DBConnection newdb = DBConnection.getDB();
 	public void handleRefund (String usrname, int transId )
 	{ 
 		newdb.insertRefund(usrname, transId);

@@ -34,7 +34,6 @@ public class LoginSceneController {
 	@FXML
 	public void login(ActionEvent event) {
 		AppUser user = authObj.login(email.getText(), pass.getText()); 
-		//System.out.println(user.getEmail());
 		if( user == null) {
 			
 			message.setText("Wrong Email or Password");
@@ -53,7 +52,7 @@ public class LoginSceneController {
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				stage.close();
 				
-				System.out.println(communicator.getUser().getUsername());
+				//System.out.println(communicator.getUser().getUsername());
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();

@@ -13,10 +13,11 @@ import java.util.Vector;
 
 public class DBConnection {
 	private Connection connection;
+	private static DBConnection db = new DBConnection();
 	private Statement statement;
 	
 
-	public DBConnection() {
+	private DBConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
 			statement = connection.createStatement();
@@ -26,6 +27,10 @@ public class DBConnection {
 	
 				
 		}
+	}
+	
+	public static DBConnection getDB() {
+		return db;
 	}
 	
 	public ResultSet checkLogin(String email) {
@@ -85,7 +90,7 @@ public class DBConnection {
 		byte[] result = md.digest(password.getBytes());
 		String pass = new String(result);
 
-		String query3 = "INSERT INTO Users VALUES(" +"'"+email+"'"+","+ "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
+		String query3 = "INSERT INTO Users (Email, Username, Password, Permission) VALUES(" +"'"+email+"'"+","+ "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
 		try {
 			statement.executeUpdate(query3);
 		} catch (SQLException e) {
@@ -174,5 +179,30 @@ public class DBConnection {
 				e.printStackTrace();
 			}
 			
+		}
+		
+		
+		public void setBalance(int balance, String username) {
+			String query = "UPDATE Users SET Wallet ='" + balance +"' WHERE Username = '" +  username + "'";
+			try {
+				System.out.println("Setting Balance");
+				statement.executeUpdate(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		public String getBalance(String username) {
+			String query = "select * from Users WHERE Username = '" +  username + "'";
+			System.out.println(username);
+			try {
+				ResultSet result = statement.executeQuery(query);
+				return result.getString("Wallet");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 		}
 }

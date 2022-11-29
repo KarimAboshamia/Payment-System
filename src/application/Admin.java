@@ -7,7 +7,6 @@ import refund.RefundManager;
 
 public class Admin extends AppUser{
 	RefundManager rman = new RefundManager();
-	private DBConnection authObj = new DBConnection();
 
 	public Admin(String email, String username, String password, String permission) {
 		super(email, username, password, permission);

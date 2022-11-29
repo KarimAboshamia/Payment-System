@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import db.DBConnection;
 
 public class NotificationManager {
-	DBConnection notificationObject = new DBConnection();
+	DBConnection notificationObject =  DBConnection.getDB();
 	//Set changed to 0 if user marked as read functionRead()
 	public void markRead(String refundID) {
 		notificationObject.setChangedRefundColumn(refundID);
