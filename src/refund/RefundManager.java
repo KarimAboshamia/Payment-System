@@ -1,7 +1,9 @@
-package application;
+package refund;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import db.DBConnection;
 
 public class RefundManager {
 	private DBConnection newdb = new DBConnection();

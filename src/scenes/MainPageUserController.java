@@ -1,5 +1,7 @@
-package application;
+package scenes;
 
+import application.User;
+import communication.DataCommunicator;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -16,7 +18,7 @@ public class MainPageUserController {
 	public MainPageUserController() {
 		DataCommunicator communicator = DataCommunicator.getCommunicator();
 		user = (User) communicator.getUser();
-		System.out.println(user.getUsername());
+		//System.out.println(user.getUsername());
 	}
 
 	@FXML

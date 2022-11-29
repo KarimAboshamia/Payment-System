@@ -5,7 +5,10 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Vector;
 
+import refund.NotificationManager;
+import refund.RefundManager;
 import services.Service;
+import services.ServiceManager;
 
 public class User extends AppUser{
 	RefundManager refm = new RefundManager();

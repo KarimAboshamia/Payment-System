@@ -1,9 +1,10 @@
-package application;
+package services;
 import java.util.*;
-import services.Service;
+
+import db.DBConnection;
+
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import services.ServiceCreator;
 
 public class ServiceManager {
 	private DBConnection createObj = new DBConnection();

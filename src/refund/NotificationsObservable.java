@@ -1,6 +1,8 @@
-package application;
+package refund;
 
 import java.sql.ResultSet;
+
+import application.User;
 
 public class NotificationsObservable implements Observable {
 	User currentUser;

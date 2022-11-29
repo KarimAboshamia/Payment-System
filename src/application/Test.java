@@ -3,6 +3,10 @@ package application;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+
+import auth.AuthenticationManager;
+import refund.NotificationsObservable;
+import refund.Observable;
 import services.Service;
 
 public class Test {

@@ -1,10 +1,15 @@
-package application;
+package auth;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import application.Admin;
+import application.AppUser;
+import application.User;
+import db.DBConnection;
 
 public class AuthenticationManager {//Manager
 	private DBConnection authObj = new DBConnection();

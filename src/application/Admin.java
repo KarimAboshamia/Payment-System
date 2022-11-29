@@ -2,6 +2,9 @@ package application;
 
 import java.sql.ResultSet;
 
+import db.DBConnection;
+import refund.RefundManager;
+
 public class Admin extends AppUser{
 	RefundManager rman = new RefundManager();
 	private DBConnection authObj = new DBConnection();

@@ -1,4 +1,6 @@
-package application;
+package communication;
+
+import application.AppUser;
 
 public class DataCommunicator {
 	private static DataCommunicator communicator = new DataCommunicator();

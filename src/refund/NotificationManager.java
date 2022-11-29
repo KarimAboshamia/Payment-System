@@ -1,6 +1,8 @@
-package application;
+package refund;
 
 import java.sql.ResultSet;
+
+import db.DBConnection;
 
 public class NotificationManager {
 	DBConnection notificationObject = new DBConnection();
