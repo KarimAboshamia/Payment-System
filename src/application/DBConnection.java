@@ -30,7 +30,7 @@ public class DBConnection {
 	
 	public ResultSet checkLogin(String email) {
 		try {
-			String query = "select * from Users WHERE Username = '" + email + "'";
+			String query = "select * from Users WHERE Email = '" + email + "'";
 			ResultSet rs = statement.executeQuery(query);
 			return rs;
 			
@@ -71,7 +71,20 @@ public class DBConnection {
 		return results;
 	}
 	
-	public void signUpExecute(String email, String username, String pass, int permission) {
+	public void signUpExecute(String email, String username, String password, int permission) {
+		MessageDigest md = null;
+		ArrayList<String> results = new ArrayList<String>();
+		int executionCondition = 0;
+	
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		byte[] result = md.digest(password.getBytes());
+		String pass = new String(result);
+
 		String query3 = "INSERT INTO Users VALUES(" +"'"+email+"'"+","+ "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
 		try {
 			statement.executeUpdate(query3);
@@ -134,5 +147,32 @@ public class DBConnection {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		public ResultSet searchForChangedStates(String callerName) {
+			String query = "select * from RefundReq WHERE Username = '" +  callerName + "' AND Changed = 1";
+			try {
+				ResultSet result = statement.executeQuery(query);
+				return result;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+		
+		public void setChangedRefundColumn(String id) {
+			String nquery = "UPDATE RefundReq "
+					+ "SET Changed = 0 "
+					+ "WHERE RefundID = '" + id + "';";
+			
+			try {
+				statement.executeUpdate(nquery);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 }

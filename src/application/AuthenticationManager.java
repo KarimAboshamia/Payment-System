@@ -20,7 +20,7 @@ public class AuthenticationManager {//Manager
 			
 			ResultSet res = authObj.checkLogin(email);
 			
-			//System.out.println(res.getString("Password"));			
+			System.out.println(res.getString("Password"));			
 
 			
 			if(pass.equals(res.getString("Password"))) {
