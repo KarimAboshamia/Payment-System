@@ -16,9 +16,9 @@ public class Admin extends AppUser{
 		return res;
 	}
 	
-	public void changeState(int newState, int refundID)
+	public void changeState(String newState, String refundID)
 	{
-		authObj.updateState(newState, refundID);
+		rman.setNewRefundState(newState, refundID);
 	}
 
 }

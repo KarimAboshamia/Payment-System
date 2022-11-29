@@ -4,15 +4,13 @@ import services.Service;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import services.ServiceCreator;
-import services.Search;
 
 public class ServiceManager {
 	private DBConnection createObj = new DBConnection();
 	Vector<Service> allServices = new Vector<>();
 	private ServiceCreator factory=new ServiceCreator();
-	private Search s=new Search();
 	
-	public void CreateSystemServices() {
+	public Vector<Service> CreateSystemServices() {
 		ResultSet rs=createObj.GetServices();
 		try {
 			while(rs.next()) {
@@ -23,11 +21,20 @@ public class ServiceManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return allServices;
 	}
 	//search for service function
-	public Vector<Service> Search(String serviceName){
+	public Vector<Service> Search(Vector<Service> allServices, String serviceName){
+		Vector<Service> wantedServices=new Vector<>();
+		for (int i = 0; i < allServices.size(); i++)
+        {
+			System.out.println("Here");
+			if(allServices.get(i).getName().contains(serviceName)) {
+				wantedServices.add(allServices.get(i));
+			}
+        }
 		
-		return s.search(allServices, serviceName);
+		return wantedServices;
 		
 	}
 }

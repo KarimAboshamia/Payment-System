@@ -122,11 +122,12 @@ public class DBConnection {
 			return res;
 		}
 		
-		public void updateState(int newState, int refundID)
+		public void updateState(String newState, String refundID)
 		{
-			String nquery = "UPDATE RefundReq"
-					+ "SET State = '"+newState+"', Changed = 1"
-					+ "WHERE State=0 AND RefundID=refundID;";
+			String nquery = "UPDATE RefundReq "
+					+ "SET State = '"+newState+"', Changed = 1 "
+					+ "WHERE State=0 AND RefundID = '" + refundID + "';";
+			
 			try {
 				statement.executeUpdate(nquery);
 			} catch (SQLException e) {

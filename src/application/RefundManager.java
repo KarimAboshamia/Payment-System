@@ -17,4 +17,9 @@ public class RefundManager {
 
 	}
 	
+	public void setNewRefundState(String newState, String refundID) {
+		newdb.updateState(newState, refundID);
+		
+	}
+	
 }
