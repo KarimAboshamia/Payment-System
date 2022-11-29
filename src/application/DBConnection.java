@@ -110,13 +110,9 @@ public class DBConnection {
 		
 		public ResultSet getRefunds()
 		{
-			String nquery = "SELECT RefundReq.Username, Transactions.Service, Transactions.SeriveProv, Transactions.amount"
-					+ "FROM Transactions"
-					+ "INNER JOIN RefundReq"
-					+ "ON Transactions.TransactionID=RefundReq.TransactionID"
-					+ "WHERE State=0;";
+			String nquery = "SELECT RefundReq.Username, RefundReq.RefundID, Transactions.Service, Transactions.ServiceProv, Transactions.Amount FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE State=0;";
 			
-			ResultSet res=null;
+			ResultSet res = null;
 			try {
 				res = statement.executeQuery(nquery);			
 			} catch (SQLException e) {

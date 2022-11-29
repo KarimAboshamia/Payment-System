@@ -10,18 +10,10 @@ public class RefundManager {
 		newdb.insertRefund(usrname, transId);
 	}
 	
-	public void getRef()
+	public ResultSet getRef()
 	{
 		ResultSet res= newdb.getRefunds();
-		try {
-			while (res.next()) {
-			      String name = res.getString("name");
-			      System.out.println(name);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return res;
 
 	}
 	

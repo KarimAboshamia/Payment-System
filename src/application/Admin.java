@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.ResultSet;
 
 public class Admin extends AppUser{
 	RefundManager rman = new RefundManager();
@@ -10,8 +11,9 @@ public class Admin extends AppUser{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void listRefunds(){
-		rman.getRef();
+	public ResultSet listRefunds(){
+		ResultSet res = rman.getRef();
+		return res;
 	}
 	
 	public void changeState(int newState, int refundID)
