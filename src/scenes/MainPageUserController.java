@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import services.ServiceManager;
 
 public class MainPageUserController {
 	@FXML
@@ -23,9 +24,9 @@ public class MainPageUserController {
 	
 	@FXML
 	private Label userBalance;
+	
 
 	User user;
-
 	
 	public MainPageUserController() {
 		DataCommunicator communicator = DataCommunicator.getCommunicator();
@@ -43,11 +44,21 @@ public class MainPageUserController {
 	
 	}
 	
+	@FXML
+	public void moveToServices(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("ServicesView.fxml"));
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.close();
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	@FXML 
 	public void goToWallet(ActionEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("UpdateBalance.fxml"));
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		//stage.close();
+		stage.close();
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
