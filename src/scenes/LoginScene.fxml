@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="parent" prefHeight="341.0" prefWidth="439.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginSceneController">
+<AnchorPane id="parent" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.LoginSceneController">
    <children>
       <AnchorPane layoutX="-90.0" layoutY="-163.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextField fx:id="email" layoutX="115.0" layoutY="120.0" prefHeight="26.0" prefWidth="209.0" promptText="Email">
+      <TextField fx:id="email" layoutX="188.0" layoutY="134.0" prefHeight="26.0" prefWidth="209.0" promptText="Email">
          <font>
             <Font size="13.0" />
          </font>
@@ -19,21 +19,21 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <PasswordField fx:id="pass" layoutX="115.0" layoutY="191.0" prefHeight="26.0" prefWidth="210.0" promptText="Password">
+      <PasswordField fx:id="pass" layoutX="187.0" layoutY="195.0" prefHeight="26.0" prefWidth="210.0" promptText="Password">
          <font>
             <Font size="13.0" />
          </font>
       </PasswordField>
-      <Button layoutX="171.0" layoutY="260.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="97.0" text="Login">
+      <Button layoutX="244.0" layoutY="273.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="97.0" text="Login">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="179.0" layoutY="65.0" prefHeight="18.0" prefWidth="64.0" text="Login">
+      <Label layoutX="276.0" layoutY="57.0" prefHeight="18.0" prefWidth="64.0" text="Login">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="message" layoutX="145.0" layoutY="231.0" prefHeight="18.0" prefWidth="163.0" />
+      <Label fx:id="message" layoutX="218.0" layoutY="244.0" prefHeight="18.0" prefWidth="163.0" />
    </children>
 </AnchorPane>

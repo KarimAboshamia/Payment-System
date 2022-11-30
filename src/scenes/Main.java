@@ -1,4 +1,4 @@
-package application;
+package scenes;
 	
 import javafx.application.Application;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package application;
+package scenes;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import auth.AuthenticationManager;
 import javafx.event.ActionEvent;
 
 public class SignUpSceneController {

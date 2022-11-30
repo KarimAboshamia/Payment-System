@@ -1,4 +1,4 @@
-package application;
+package auth;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -6,8 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import application.Admin;
+import application.AppUser;
+import application.User;
+import db.DBConnection;
+
 public class AuthenticationManager {//Manager
-	private DBConnection authObj = new DBConnection();
+	private DBConnection authObj = DBConnection.getDB();
 	
 	public AppUser login(String email, String password) {
 		//Query database with name and hashed password
@@ -20,16 +25,16 @@ public class AuthenticationManager {//Manager
 			
 			ResultSet res = authObj.checkLogin(email);
 			
-			//System.out.println(res.getString("Password"));			
+			System.out.println(res.getString("Password"));			
 
 			
 			if(pass.equals(res.getString("Password"))) {
 				if(res.getInt("Permission") == 1) {
 					System.out.println("Admin Logged In Sucessfully");	
-					return new Admin(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+					return new Admin(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 				}else {
 					System.out.println("You have Logged In Successfully");
-					return new User(res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+					return new User(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"), Integer.parseInt(res.getString("Wallet")));
 
 				}
 			}else {

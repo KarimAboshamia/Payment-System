@@ -1,12 +1,64 @@
 package application;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import auth.AuthenticationManager;
+import refund.NotificationsObservable;
+import refund.Observable;
+import services.Service;
+
 public class Test {
 	public static void main(String []args) {
-		AuthenticationManager obj = new AuthenticationManager();
-		DBConnection obj2 = new DBConnection();
-		//obj2.signUp("user6", "password5", 0);
-		System.out.println(obj.signUp("user45@gmail.com", "user21", "password4", 0));
-		//obj.login("user12", "password4");
+		/*
+		//Test Casting and adding a refund request.
+		AppUser user = new User("Ahmed@gmail.com", "Ahmed", "1234", "0");
+		User mainuser = (User) user;
+		mainuser.requestRefund("Ahmed", 1);
+		
+		//Test listing all refund requests
+		Admin admin = new Admin("Mohamed@gmail.com", "Mohamed", "1234","1");
+		String id = "-1";
+		try {
+			id = admin.listRefunds().getString("RefundID");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Test accepting/rejecting a request
+		admin.changeState("-1", "11");
+		*/
+		
+		//Test services creation and search
+		/*ServiceManager serviceManager = new ServiceManager();
+		Vector<Service> services = serviceManager.CreateSystemServices();
+		for(int i = 0; i < services.size(); i++) {
+			System.out.println(services.get(i).getName());
+		}*/
+		//Search
+		//AppUser user = new User("Ahmed2@gmail.com", "Ahmed2", "1234", "0");
+		//User mainuser = (User) user;
+		//System.out.println(mainuser.search(services, "S").get(2).getName());
+		
+		
+		//Test notifications
+		AuthenticationManager auth = new AuthenticationManager();
+		//auth.signUp("Ahmed@gmail.com", "Ahmed", "sasuke", 0);
+		AppUser user = 	auth.login("Ahmed@gmail.com", "sasuke");
+		User mainuser = (User) user;
+		Observable notificationsObservable = new NotificationsObservable();
+		notificationsObservable.subscribe(mainuser);
+		ResultSet res = mainuser.readNotification();
+		try {
+			System.out.println(res.getString("RefundID"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	
 	}
 
 }
