@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 public class ServiceManager {
-	private DBConnection createObj = new DBConnection();
+	private DBConnection createObj = DBConnection.getDB();
 	Vector<Service> allServices = new Vector<>();
 	private ServiceCreator factory=new ServiceCreator();
 	

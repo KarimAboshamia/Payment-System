@@ -12,7 +12,7 @@ import application.User;
 import db.DBConnection;
 
 public class AuthenticationManager {//Manager
-	private DBConnection authObj = new DBConnection();
+	private DBConnection authObj = DBConnection.getDB();
 	
 	public AppUser login(String email, String password) {
 		//Query database with name and hashed password
@@ -34,7 +34,7 @@ public class AuthenticationManager {//Manager
 					return new Admin(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 				}else {
 					System.out.println("You have Logged In Successfully");
-					return new User(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
+					return new User(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"), Integer.parseInt(res.getString("Wallet")));
 
 				}
 			}else {
