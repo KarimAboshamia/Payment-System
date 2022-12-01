@@ -5,7 +5,7 @@ public class ServiceCreator {
 	public ServiceCreator() {
 		// TODO Auto-generated constructor stub
 	}
-	public Service createService(String name ) {
+	public Service createService(String name) {
 		// TODO Auto-generated method stub
 		if(name.equals("Mobile-Service")) {
 			Service mobileservice=new MobileService(name);

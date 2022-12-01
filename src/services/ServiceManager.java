@@ -29,8 +29,8 @@ public class ServiceManager {
 		Vector<Service> wantedServices=new Vector<>();
 		for (int i = 0; i < allServices.size(); i++)
         {
-			System.out.println("Here");
-			if(allServices.get(i).getName().contains(serviceName)) {
+					
+			if(allServices.get(i).getName().toLowerCase().contains(serviceName.toLowerCase())) {
 				wantedServices.add(allServices.get(i));
 			}
         }

@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Vector;
 
-import balance.BalanceManager;
+import balance.BalanceManagerInterface;
 import balance.CreditCardManager;
+import balance.DeliveryAtHomeManager;
+import balance.WalletBalanceManager;
 import refund.NotificationManager;
 import refund.RefundManager;
 import services.Service;
@@ -17,7 +19,7 @@ public class User extends AppUser{
 	RefundManager refm = new RefundManager();
 	ServiceManager serviceManager  = new ServiceManager();
 	NotificationManager notificationManager = new NotificationManager();
-	BalanceManager balanceManager = new BalanceManager();
+	BalanceManagerInterface balanceManagerInterface = new WalletBalanceManager();
 	CreditCardManager creditManager = new CreditCardManager();
 	ResultSet result;
 	
@@ -52,14 +54,36 @@ public class User extends AppUser{
 	
 	public boolean setBalance(String cardNumber, int pin, int balance) {
 		//call balance manager if credit card manager returned true
-		if(creditManager.checkCreditDetails(cardNumber, pin)) {
-			System.out.println("Inside user");
-			walletBalance = balanceManager.setBalance(balance, this.getUsername());
+		if(creditManager.checkCredit(cardNumber, pin)) {
+			walletBalance = balanceManagerInterface.setBalance(balance, this.getUsername());
 			return true;
 		}
 		else {
 			return false;
 		}
+	}
+	
+	public String consumeBalance(int amount, String serviceName, int paymentMethod, String cardNumber, int pin) {
+		
+		//Based on payment method call one of the three options
+		BalanceManagerInterface balanceManagerInterface = null;
+		if(paymentMethod == 0) {
+			balanceManagerInterface = new WalletBalanceManager();
+		}
+		
+		if(paymentMethod == 1) {
+			//Call Second Type
+			balanceManagerInterface = new DeliveryAtHomeManager();
+		}
+		
+		if(paymentMethod == 2) {
+			//Call Third type
+			balanceManagerInterface = new CreditCardManager();
+		}
+		System.out.println("Inside user" + amount);
+		return balanceManagerInterface.consumeBalance(amount, this.getUsername(), serviceName, cardNumber, pin);
+
+		
 	}
 
 }

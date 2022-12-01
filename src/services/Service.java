@@ -1,12 +1,28 @@
 package services;
 
-public class Service {
+import java.util.Vector;
+
+import providers.Provider;
+
+public abstract class Service {
 	private String name;
-	public Service(String n) {
+	Vector<Provider> providers = new Vector<Provider>();
+	private boolean cachOnDelivery;
+	
+	public Service(String n, boolean cachOnDelivery) {
 		this.name=n;
+		this.cachOnDelivery = cachOnDelivery;
 	}
+	
+	public void addProvider(Provider provider) {
+		providers.add(provider);
+	}
+	
 	public String getName() {
 		return this.name;
 	}
 
+	public boolean getCachOnDelivery() {
+		return cachOnDelivery;
+	}
 }
