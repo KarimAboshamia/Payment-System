@@ -1,12 +1,12 @@
 package balance;
 
-public class CreditCardManager {
-	
-	//Thin class that can have extra credit card logic if needed later
-	public boolean checkCreditDetails(String number, int pin) {
-		System.out.println("Number "+ number.length());
-		if(number.length() > 16) { return true;};
-		return false;
-	}
+public class CreditCardManager extends BalanceManagerInterface{
+    @Override
+    public String consumeMoney(String username, int amount, String cardNumber, int pin, String serviceName) {
+        if(checkCredit(cardNumber, pin)) {
+            return "Charged Successfully from Credit Card";
+        }
+        return "Please enter 16 numbers";
+    }
 
 }
