@@ -183,6 +183,7 @@ public class DBConnection {
 		
 		
 		public void setBalance(int balance, String username) {
+			System.out.println("Charging Balance " + balance);
 			String query = "UPDATE Users SET Wallet ='" + balance +"' WHERE Username = '" +  username + "'";
 			try {
 				System.out.println("Setting Balance");
@@ -204,5 +205,16 @@ public class DBConnection {
 				e.printStackTrace();
 			}
 			return null;
+		}
+		
+		public void insertTransaction(String userName, int amount, String serviceName) {
+			String newQuery= "insert into Transactions (Username, Amount, Service) values ('"+userName+"', '" + amount + "', '" + serviceName + "')";
+			try {
+				statement.executeUpdate(newQuery);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 }

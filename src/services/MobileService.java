@@ -2,8 +2,8 @@ package services;
 
 public class MobileService extends Service {
 
-	public MobileService(String n) {
-		super(n);
+	public MobileService(String n, boolean cachOnDelivery) {
+		super(n, cachOnDelivery);
 		// TODO Auto-generated constructor stub
 	}
 	

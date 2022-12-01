@@ -36,11 +36,7 @@ public class ServicesViewController {
 	@FXML
 	public void initialize() {
 		systemServices = serviceManager.CreateSystemServices();
-		for(int i = 0; i < systemServices.size(); i++) {
-			Button btn = new Button(systemServices.get(i).getName());
-			btn.setMinHeight(100);
-			grid.add(btn, i, 0);
-		}
+		displaySearch(systemServices);
 		
 	}
 	
@@ -48,12 +44,19 @@ public class ServicesViewController {
 	public void search(ActionEvent event) {
 		Vector<Service> tmpServices = serviceManager.Search(systemServices, searching.getText());
 		grid.getChildren().clear();
+		displaySearch(tmpServices);
 		
-		for(int i = 0; i < tmpServices.size(); i++) {
-			Button btn = new Button(tmpServices.get(i).getName());
+	
+	}
+	
+	
+	public void displaySearch(Vector<Service> displayServices) {
+		for(int i = 0; i < displayServices.size(); i++) {
+			Button btn = new Button(displayServices.get(i).getName());
 			btn.setMinHeight(100);
 			grid.add(btn, i, 0);
 		}
+		
 	}
 
 }

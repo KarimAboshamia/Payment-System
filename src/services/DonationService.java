@@ -2,8 +2,8 @@ package services;
 
 public class DonationService extends Service {
 
-	public DonationService(String n) {
-		super(n);
+	public DonationService(String n, boolean cachOnDelivery) {
+		super(n, cachOnDelivery);
 		// TODO Auto-generated constructor stub
 	}
 

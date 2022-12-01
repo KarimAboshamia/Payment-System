@@ -20,7 +20,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <TextField fx:id='searching' layoutX="150.0" layoutY="58.0" prefHeight="26.0" prefWidth="298.0" promptText="Search for a Service" />
-      <Button layoutX="459.0" layoutY="59.0" mnemonicParsing="false" text="Search" onAction='#search'/>
+      <TextField fx:id="searching" layoutX="107.0" layoutY="58.0" prefHeight="26.0" prefWidth="298.0" promptText="Search for a Service" />
+      <Button layoutX="419.0" layoutY="58.0" mnemonicParsing="false" onAction="#search" text="Search" />
    </children>
 </AnchorPane>
