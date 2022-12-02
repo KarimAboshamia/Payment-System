@@ -1,5 +1,8 @@
 package balance;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import application.User;
 import db.DBConnection;
 
@@ -38,5 +41,10 @@ public abstract class BalanceManagerInterface {
         
         balanceObject.insertTransaction(userName, amount, serviceName);
         
+      
+    }
+    
+    public ResultSet getTransactions(String username) throws SQLException {
+    	return balanceObject.getTransactions(username);
     }
 }

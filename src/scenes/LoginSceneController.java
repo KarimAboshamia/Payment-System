@@ -29,7 +29,7 @@ public class LoginSceneController {
 	private Label message;
 	
 	private AuthenticationManager authObj = new AuthenticationManager();
-
+	ChangeScenes scener = new ChangeScenes();
 
 	@FXML
 	public void login(ActionEvent event) {
@@ -41,23 +41,19 @@ public class LoginSceneController {
 		}else {
 			//Redirect to next page
 			try {
-			
+				if(user.getPermission().equals("0")) {
 				
-				DataCommunicator communicator = DataCommunicator.getCommunicator();
-				communicator.setUser(user);
-				
-				System.out.println("Here");
-
-				Parent root = FXMLLoader.load(getClass().getResource("MainPageUser.fxml"));
-				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-				stage.close();
-				
-				//System.out.println(communicator.getUser().getUsername());
-				Scene scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
+					DataCommunicator communicator = DataCommunicator.getCommunicator();
+					communicator.setUser(user);
+					
+					scener.changeScene(event, "MainPageUser.fxml");
+				} else {
+					DataCommunicator communicator = DataCommunicator.getCommunicator();
+					communicator.setUser(user);
+					scener.changeScene(event, "MainPageAdmin.fxml");
+					
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
