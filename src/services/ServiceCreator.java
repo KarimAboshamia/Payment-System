@@ -53,6 +53,9 @@ public class ServiceCreator {
 			Provider cancerHospital=new DonationsProvider("Hospital",new HandleCancerDonationData());
 			Provider schools=new DonationsProvider("Hospital",new HandleSchoolDonationData());
 			Provider NPO=new DonationsProvider("Hospital",new HandleNPOData());
+			donationservice.addProvider(NPO);
+			donationservice.addProvider(cancerHospital);
+			donationservice.addProvider(schools);
 
 			return donationservice;
 		}
