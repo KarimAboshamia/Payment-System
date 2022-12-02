@@ -1,8 +1,8 @@
 package providers;
 
-public class VodafoneUserData implements UserData {
+public class ReceiptUserData implements UserData {
 	//Takes Data 
-	int textFields = 2;
+	int textFields = 3;
 
 //	@Override
 //	public void getUserData() {
@@ -15,4 +15,5 @@ public class VodafoneUserData implements UserData {
 	public int numberOfTextFields() {
 		return textFields;
 	}
+
 }
