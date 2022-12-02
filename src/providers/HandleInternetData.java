@@ -4,21 +4,21 @@ import java.util.*;
 
 import application.User;
 
-public class HandleEtisalatData implements HandleData{
+public class HandleInternetData implements HandleData {
+
 	String phoneNumber;
 	int amount;
 	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
-		System.out.println("Handling Etisalat data");
+		System.out.println("Handling Etisalat Ground phone internet data");
 		
 		phoneNumber = inputFields.get("phoneNumber");
 		amount = Integer.parseInt(inputFields.get("amount"));
-		if(phoneNumber.substring(0,3).equals(011) && phoneNumber.length() == 11) {
+		if(phoneNumber.length() == 8) {
 			return user.consumeBalance(amount, serviceName, paymentMethod, cardNumber, pin);
-		} else if (phoneNumber.length() < 11){
-			return "Wrong phone number";
-		} else if (!(phoneNumber.substring(0,3).equals(011))) {
-			return "Not Etisalat Number";
+		} else if (phoneNumber.length() < 8){
+			return "Wrong Land-Line number";
 		}
 		return null;
 	}
+
 }

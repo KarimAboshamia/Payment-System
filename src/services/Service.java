@@ -11,7 +11,7 @@ public abstract class Service {
 	
 	public Service(String n, boolean cachOnDelivery) {
 		this.name=n;
-		this.cachOnDelivery = cachOnDelivery;
+		this.cachOnDelivery = false;
 	}
 	
 	public void addProvider(Provider provider) {
@@ -24,5 +24,9 @@ public abstract class Service {
 
 	public boolean getCachOnDelivery() {
 		return cachOnDelivery;
+	}
+	
+	public void activateCashOnDelivery() {
+		this.cachOnDelivery=true;
 	}
 }

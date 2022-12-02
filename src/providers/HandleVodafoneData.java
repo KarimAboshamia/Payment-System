@@ -1,17 +1,17 @@
 package providers;
 
-import java.util.Vector;
+import java.util.*;
 
 import application.User;
 
 public class HandleVodafoneData implements HandleData{
 	String phoneNumber;
 	int amount;
-	public String handleUserData(Vector<String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		System.out.println("Handling vodafone data");
 		
-		phoneNumber = inputFields.get(0);
-		amount = Integer.parseInt(inputFields.get(1));
+		phoneNumber = inputFields.get("phoneNumber");
+		amount = Integer.parseInt(inputFields.get("amount"));
 		if(phoneNumber.substring(0,3).equals(010) && phoneNumber.length() == 11) {
 			return user.consumeBalance(amount, serviceName, paymentMethod, cardNumber, pin);
 		} else if (phoneNumber.length() < 11){
