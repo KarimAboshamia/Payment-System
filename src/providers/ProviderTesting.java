@@ -15,7 +15,7 @@ public class ProviderTesting {
 		Service mobileService = new MobileService("Mobile", false);
 		
 		//Create provider for Vodafone
-		Provider vodafoneObject = new VodafoneProvider("Vodafone");
+		Provider vodafoneObject = new MobileServiceProvider("Vodafone", null);
 		
 		//Create HandleVodafoneData
 		HandleData vodafoneHandler = new HandleVodafoneData();
@@ -32,7 +32,7 @@ public class ProviderTesting {
 		data.add("01147232121");
 		data.add( "400");
 		//Call handleData from Vodafone with payment methods 0 - 1 - 2
-		System.out.println(vodafoneObject.handleUserData(data, user, mobileService.getName(), 0, "234567891234567", 1234 ));
+		System.out.println(vodafoneObject.handleUserData(null, user, mobileService.getName(), 0, "234567891234567", 1234 ));
 	}
 	
 	

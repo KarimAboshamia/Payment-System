@@ -1,9 +1,9 @@
 package providers;
 
-import java.util.Vector;
+import java.util.*;
 
 import application.User;
 
 public interface HandleData {
-	public String handleUserData(Vector<String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin);
+	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin);
 }
