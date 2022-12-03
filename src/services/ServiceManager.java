@@ -1,27 +1,25 @@
 package services;
 import java.util.*;
 
-import db.DBConnection;
 
-import java.sql.SQLException;
-import java.sql.ResultSet;
 
 public class ServiceManager {
-	private DBConnection createObj = DBConnection.getDB();
 	Vector<Service> allServices = new Vector<>();
 	private ServiceCreator factory=new ServiceCreator();
 	
 	public Vector<Service> CreateSystemServices() {
-		ResultSet rs=createObj.GetServices();
-		try {
-			while(rs.next()) {
-				Service temp=factory.createService(rs.getString("Name"));
-				allServices.add(temp);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		Service temp=factory.createService("Mobile-Service");
+		Service temp2=factory.createService("LandLine-Service");
+		Service temp3=factory.createService("InternetPayment-Service");
+		Service temp4=factory.createService("Donation-Service");
+	
+		allServices.add(temp);
+		allServices.add(temp2);
+		allServices.add(temp3);
+		allServices.add(temp4);
+			
+	
 		return allServices;
 	}
 	//search for service function

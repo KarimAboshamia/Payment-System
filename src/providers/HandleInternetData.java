@@ -8,7 +8,7 @@ public class HandleInternetData implements HandleData {
 
 	String phoneNumber;
 	int amount;
-	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		System.out.println("Handling Etisalat Ground phone internet data");
 		
 		phoneNumber = inputFields.get("phoneNumber");

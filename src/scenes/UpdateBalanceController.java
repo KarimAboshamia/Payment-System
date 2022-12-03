@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -31,21 +30,17 @@ public class UpdateBalanceController {
 	@FXML
 	ImageView backImage;
 	
+	ChangeScenes scener = new ChangeScenes();
 	@FXML
 	public void initialize() {
 		backImage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			Parent root = null;
 			try {
-				root = FXMLLoader.load(getClass().getResource("MainPageUser.fxml"));
+				scener.changeSceneWithMouse(event, "MainPageUser.fxml");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			stage.close();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+
 	     });
 	}
 	

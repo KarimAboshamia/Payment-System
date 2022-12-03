@@ -18,6 +18,10 @@ public abstract class Service {
 		providers.add(provider);
 	}
 	
+	public Vector<Provider> getProviders(){
+		return providers;
+	}
+	
 	public String getName() {
 		return this.name;
 	}

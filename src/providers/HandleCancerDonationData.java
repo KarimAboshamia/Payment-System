@@ -6,19 +6,17 @@ import application.User;
 
 public class HandleCancerDonationData implements HandleData {
 
-	String DonationName;
+	String donationName;
 	int amount;
 	String city;
-	String hospitalName;
-	String hospitalSection;
-	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	String identity;
+	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		System.out.println("Handling Donations data");
 		
-		DonationName= inputFields.get("donationName");
-		amount = (int) (Integer.parseInt(inputFields.get("amount")) * 1.2);
-		city = inputFields.get("city");
-		hospitalName = inputFields.get("hospitalName");
-		hospitalSection=inputFields.get("hospitalSection");
+		donationName= inputFields.get("To");
+		amount = (int) (Integer.parseInt(inputFields.get("Amount")) * 1.2);
+		city = inputFields.get("Duration");
+		identity = dropFields.get("Identity");
 		
 		return user.consumeBalance(amount, serviceName, paymentMethod, cardNumber, pin);
 		

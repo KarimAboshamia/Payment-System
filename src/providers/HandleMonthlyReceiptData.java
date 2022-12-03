@@ -8,7 +8,7 @@ public class HandleMonthlyReceiptData implements HandleData{
 	String landLine;
 	int amount;
 	String city;
-	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		System.out.println("Handling Monthly Receipt data");
 		
 		landLine = inputFields.get("lanLine");

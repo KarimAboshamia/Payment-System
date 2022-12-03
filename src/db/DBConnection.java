@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Vector;
 //import services.Service;
 
 public class DBConnection {
@@ -48,7 +47,6 @@ public class DBConnection {
 	public ArrayList<String> signUp(String email, String username, String password, int permission) {
 		MessageDigest md;
 		ArrayList<String> results = new ArrayList<String>();
-		int executionCondition = 0;
 		try {
 			md = MessageDigest.getInstance("MD5");
 			byte[] result = md.digest(password.getBytes());
@@ -78,8 +76,6 @@ public class DBConnection {
 	
 	public void signUpExecute(String email, String username, String password, int permission) {
 		MessageDigest md = null;
-		ArrayList<String> results = new ArrayList<String>();
-		int executionCondition = 0;
 	
 		try {
 			md = MessageDigest.getInstance("MD5");

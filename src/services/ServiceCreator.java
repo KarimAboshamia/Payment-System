@@ -18,6 +18,13 @@ public class ServiceCreator {
 			Provider Orange=new MobileServiceProvider("Orange", new HandleOrangeData());
 			Provider We=new MobileServiceProvider("We", new HandleWeData());
 			
+			UserData data = new ServiceUserData();
+			
+			Vodafone.setUserData(data);
+			Etisalat.setUserData(data);
+			Orange.setUserData(data);
+			We.setUserData(data);
+			
 			mobileservice.addProvider(Vodafone);
 			mobileservice.addProvider(Etisalat);
 			mobileservice.addProvider(Orange);
@@ -28,10 +35,16 @@ public class ServiceCreator {
 		else if(name.equals("LandLine-Service")) {
 			Service landlineservice=new LandLineService(name,false);
 			Provider MonthlyLandLine=new LandLineProvider("Monthly", new HandleMonthlyReceiptData());
-			Provider QuarterLandLine=new LandLineProvider("Monthly", new HandleQuarterReceiptData());
+			Provider QuarterLandLine=new LandLineProvider("Quarterly", new HandleQuarterReceiptData());
 			
 			landlineservice.addProvider(QuarterLandLine);
 			landlineservice.addProvider(MonthlyLandLine);
+			
+			UserData data = new ReceiptUserData();
+			
+			MonthlyLandLine.setUserData(data);
+			QuarterLandLine.setUserData(data);
+			
 			
 			return landlineservice;
 		}
@@ -42,6 +55,13 @@ public class ServiceCreator {
 			Provider Orange=new LandLineServiceProvidor("Orange", new HandleInternetData());
 			Provider We=new LandLineServiceProvidor("We", new HandleInternetData());
 			
+			UserData data = new ServiceUserData();
+			
+			Vodafone.setUserData(data);
+			Etisalat.setUserData(data);
+			Orange.setUserData(data);
+			We.setUserData(data);
+			
 			internetpaymentservice.addProvider(Vodafone);
 			internetpaymentservice.addProvider(Etisalat);
 			internetpaymentservice.addProvider(Orange);
@@ -50,12 +70,19 @@ public class ServiceCreator {
 		}
 		else if(name.equals("Donation-Service")) {
 			Service donationservice=new DonationService(name,false);
-			Provider cancerHospital=new DonationsProvider("Hospital",new HandleCancerDonationData());
-			Provider schools=new DonationsProvider("Hospital",new HandleSchoolDonationData());
-			Provider NPO=new DonationsProvider("Hospital",new HandleNPOData());
+			Provider cancerHospital=new DonationsProvider("Cancer",new HandleCancerDonationData());
+			Provider schools=new DonationsProvider("School",new HandleSchoolDonationData());
+			Provider NPO=new DonationsProvider("NPO",new HandleNPOData());
 			donationservice.addProvider(NPO);
 			donationservice.addProvider(cancerHospital);
 			donationservice.addProvider(schools);
+			
+			UserData data = new DonationsUserData();
+			
+			cancerHospital.setUserData(data);
+			schools.setUserData(data);
+			NPO.setUserData(data);
+
 
 			return donationservice;
 		}

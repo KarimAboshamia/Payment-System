@@ -5,14 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.User;
-import balance.BalanceManagerInterface;
-import balance.WalletBalanceManager;
 import communication.DataCommunicator;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -20,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 
 public class NotificationsController {
 	User user;

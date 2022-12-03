@@ -1,19 +1,25 @@
 package providers;
 
-public class ReceiptUserData implements UserData {
-	//Takes Data 
-	int textFields = 3;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
-//	@Override
-//	public void getUserData() {
-//		//enter first name
-//		//enter amount
-//		
-//	}
+public class ReceiptUserData implements UserData {
 
 	@Override
-	public int numberOfTextFields() {
+	public Vector<String> getTextFieldData() {
+		Vector<String> textFields = new Vector<String>();
+		textFields.add("LandLine Number");
+		textFields.add("Amount");
+		textFields.add("City");
 		return textFields;
 	}
+
+	@Override
+	public Map<String, List<String>> getDropDownData() {
+		return null;
+	}
+
 
 }

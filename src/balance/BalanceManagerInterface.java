@@ -3,7 +3,6 @@ package balance;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import application.User;
 import db.DBConnection;
 
 public abstract class BalanceManagerInterface {

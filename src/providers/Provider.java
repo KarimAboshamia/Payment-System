@@ -1,6 +1,5 @@
 package providers;
 
-import java.util.Vector;
 import java.util.*;
 import application.User;
 
@@ -8,6 +7,7 @@ public abstract class Provider {
 	private String providerName;
 	//Vector<String> textField = new Vector<String>();
 	Map<String,String> textField =new HashMap<>();
+	Map<String, ArrayList<String>> dropDownFields = new HashMap<>();
 	//Vector<String> dropField = new Vector<String>();
 	UserData userData;
 	HandleData handleData;
@@ -30,15 +30,20 @@ public abstract class Provider {
 	}
 	
 	
-	public int getTextFields() {
+	public Vector<String> getTextFieldData() {
 		//To create User Interface
-		return userData.numberOfTextFields();
+		return userData.getTextFieldData();
 	}
+	
+	public Map<String, List<String>> getDropDownData(){
+		return userData.getDropDownData();
+	}
+	
 
-	public String handleUserData(Map<String,String> inputFields, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String handleUserData(Map<String,String> textFieldsInput, Map<String, String>dropDownInput, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		
 		//Create transaction with the username and service details 
 		//Takes users replies on the form and handle it 
-		return handleData.handleUserData(inputFields, user, serviceName, paymentMethod, cardNumber, pin);
+		return handleData.handleUserData(textFieldsInput, dropDownInput, user, serviceName, paymentMethod, cardNumber, pin);
 	}
 }

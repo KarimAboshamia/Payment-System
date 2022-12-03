@@ -2,7 +2,6 @@ package application;
 
 import java.sql.ResultSet;
 
-import db.DBConnection;
 import refund.RefundManager;
 
 public class Admin extends AppUser{
