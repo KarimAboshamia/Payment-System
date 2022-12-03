@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.MainPageUserController">
    <children>
-      <ImageView fx:id="notificationsButton" fitHeight="26.0" fitWidth="38.0" layoutX="544.0" layoutY="27.0" onMousePressed="#imageHandler" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="notificationsButton" fitHeight="26.0" fitWidth="38.0" layoutX="544.0" layoutY="27.0" onMousePressed="#imageHandler" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../bell.png" />
          </image>
@@ -19,9 +19,9 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id='userBalance' layoutX="103.0" layoutY="32.0" text="0.0" />
-      <Button layoutX="241.0" layoutY="90.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" text="Services" onAction="#moveToServices" />
+      <Label fx:id="userBalance" layoutX="103.0" layoutY="32.0" text="0.0" />
+      <Button layoutX="241.0" layoutY="90.0" mnemonicParsing="false" onAction="#moveToServices" prefHeight="43.0" prefWidth="118.0" text="Services" />
       <Button layoutX="241.0" layoutY="211.0" mnemonicParsing="false" onAction="#goToWallet" prefHeight="43.0" prefWidth="118.0" text="Wallet" />
-      <Button layoutX="241.0" layoutY="153.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" text="Refund Request" />
+      <Button layoutX="241.0" layoutY="153.0" mnemonicParsing="false" onAction="#createNewRefund" prefHeight="43.0" prefWidth="118.0" text="Refund Request" />
    </children>
 </AnchorPane>

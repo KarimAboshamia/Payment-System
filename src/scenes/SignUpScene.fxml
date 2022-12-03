@@ -16,9 +16,9 @@
          </font>
       </Label>
       <TextField fx:id="user3" layoutX="204.0" layoutY="119.0" prefHeight="36.0" prefWidth="178.0" promptText="Username" />
-      <Button layoutX="249.0" layoutY="284.0" mnemonicParsing="false" onAction="#signupHandler" prefHeight="36.0" prefWidth="71.0" text="Sign Up" />
-      <PasswordField fx:id="pass" layoutX="204.0" layoutY="209.0" prefHeight="36.0" prefWidth="178.0" promptText="Password" />
-      <Label fx:id="message" layoutX="203.0" layoutY="255.0" prefHeight="18.0" prefWidth="178.0" />
       <TextField fx:id="email" layoutX="204.0" layoutY="163.0" prefHeight="36.0" prefWidth="178.0" promptText="Email" />
+      <PasswordField fx:id="pass" layoutX="204.0" layoutY="209.0" prefHeight="36.0" prefWidth="178.0" promptText="Password" />
+      <Button layoutX="249.0" layoutY="284.0" mnemonicParsing="false" onAction="#signupHandler" prefHeight="36.0" prefWidth="71.0" text="Sign Up" />
+      <Label fx:id="message" layoutX="203.0" layoutY="255.0" prefHeight="18.0" prefWidth="178.0" />
    </children>
 </AnchorPane>

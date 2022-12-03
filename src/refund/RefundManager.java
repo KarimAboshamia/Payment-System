@@ -7,7 +7,7 @@ import db.DBConnection;
 
 public class RefundManager {
 	private DBConnection newdb = DBConnection.getDB();
-	public void handleRefund (String usrname, int transId )
+	public void handleRefund (String usrname, String transId ) throws SQLException
 	{ 
 		newdb.insertRefund(usrname, transId);
 	}

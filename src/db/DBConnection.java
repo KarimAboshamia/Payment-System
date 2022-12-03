@@ -116,7 +116,7 @@ public class DBConnection {
 		}
 
 		
-		public void insertRefund(String usrname, int transId )
+		public void insertRefund(String usrname, String transId)
 		{
 			String newQuery= "insert into RefundReq (Username, State, TransactionID, Changed) values ('"+usrname+"', 0, '"+transId+"', 0);";
 			try {
@@ -129,7 +129,7 @@ public class DBConnection {
 		
 		public ResultSet getRefunds()
 		{
-			String nquery = "SELECT RefundReq.Username, RefundReq.RefundID, Transactions.Service, Transactions.ServiceProv, Transactions.Amount FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE State=0;";
+			String nquery = "SELECT RefundReq.Username, RefundReq.RefundID, Transactions.Service, Transactions.Amount FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE State=0;";
 			
 			ResultSet res = null;
 			try {
@@ -219,6 +219,7 @@ public class DBConnection {
 			
 		}
 		
+
 		public ResultSet calcServiceDiscount() throws SQLException
 		{
 			String nquery = "select * from ServiceDiscount;";
@@ -231,6 +232,13 @@ public class DBConnection {
 			String nquery = "select * from TransactionDiscount;";
 			ResultSet res = statement.executeQuery(nquery);
 			return res;
+		}
+
+
+		public ResultSet getTransactions(String user) throws SQLException {
+			String query = "select * from Transactions Where Username = '" + user + "'";
+			ResultSet result = statement.executeQuery(query);
+			return result;
 		}
 
 }

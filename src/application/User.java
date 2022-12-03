@@ -29,9 +29,9 @@ public class User extends AppUser{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void requestRefund(String username, int transId)
+	public void requestRefund(String transId) throws SQLException
 	{
-		refm.handleRefund(username,transId);
+		refm.handleRefund(this.getUsername(), transId);
 	}
 	
 	public Vector<Service> search(Vector<Service> allServices,String name){
@@ -46,6 +46,11 @@ public class User extends AppUser{
 	
 	public ResultSet readNotification() {
 		return result;
+	}
+	
+	public void markRead(String refundID) {
+		notificationManager.markRead(refundID);
+		
 	}
 	
 	public int getBalance() {
