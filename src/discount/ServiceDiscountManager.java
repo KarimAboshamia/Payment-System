@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import application.User;
 import db.*;
 
-public class ServiceDisountManager {
+public class ServiceDiscountManager {
 	DBConnection dbobj = DBConnection.getDB();
 	public Discount calcDiscount(Discount discount) throws SQLException
 	{
@@ -16,5 +16,13 @@ public class ServiceDisountManager {
 			discount = new ServiceDiscount(discount, Float.parseFloat(overall.getString("DiscountRatio")));
 		}
 		return discount;
+	}
+	
+	public void setTransDiscount(float ratio) {
+		dbobj.setTransactionDiscount(ratio);
+	}
+	
+	public void setServiceDiscount(float ratio) {
+		dbobj.setServiceDiscount(ratio);
 	}
 }

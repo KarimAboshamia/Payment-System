@@ -7,7 +7,7 @@ import application.User;
 public class DiscountScenario {
 	Discount obj;
 	TrasnactionDiscountManager objT =new TrasnactionDiscountManager();
-	ServiceDisountManager objS = new ServiceDisountManager();
+	ServiceDiscountManager objS = new ServiceDiscountManager();
 	public Discount calcOverallDiscount(Discount obj, User user) throws SQLException
 	{
 		obj=objT.calcDiscount(obj, user);
