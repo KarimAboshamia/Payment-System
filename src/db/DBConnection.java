@@ -225,7 +225,7 @@ public class DBConnection {
 		
 		public void setServiceDiscount(float ratio) {
 			
-			String newQuery= "insert into TransactionDiscount (DiscountRatio) values ('" + ratio+ "')";
+			String newQuery= "insert into ServiceDiscount (DiscountRatio) values ('" + ratio+ "')";
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {
@@ -245,7 +245,7 @@ public class DBConnection {
 		}
 
 		public void setTransactionDiscount(float ratio) {
-			String newQuery= "insert into ServiceDiscount (DiscountRatio) values ('" + ratio+ "')";
+			String newQuery= "insert into TransactionDiscount (DiscountRatio) values ('" + ratio+ "')";
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {
