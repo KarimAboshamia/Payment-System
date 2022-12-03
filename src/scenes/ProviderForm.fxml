@@ -2,15 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.ProviderFormController">
+<AnchorPane prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.ProviderFormController">
    <children>
-      <GridPane layoutX="202.0" layoutY="81.0" prefHeight="26.0" prefWidth="194.0" vgap="30.0">
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="202.0" layoutY="81.0" prefHeight="26.0" prefWidth="194.0" vgap="30.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -23,6 +25,11 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="266.0" layoutY="277.0" mnemonicParsing="false" onAction="#submitForm" prefHeight="34.0" prefWidth="65.0" text="Submit" />
+      <Button layoutX="266.0" layoutY="599.0" mnemonicParsing="false" onAction="#submitForm" prefHeight="34.0" prefWidth="65.0" text="Submit" />
+      <ImageView fx:id="backImage" fitHeight="16.0" fitWidth="18.0" layoutX="28.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

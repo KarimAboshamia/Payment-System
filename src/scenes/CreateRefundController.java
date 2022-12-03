@@ -31,6 +31,8 @@ public class CreateRefundController {
 	@FXML
 	ImageView backImage;
 	
+	ChangeScenes scener = new ChangeScenes();
+	
 	public CreateRefundController(){
 		DataCommunicator communicator = DataCommunicator.getCommunicator();
 		user = (User) communicator.getUser();
@@ -43,18 +45,12 @@ public class CreateRefundController {
 	public void initialize() throws SQLException {
 		//Getting Back Image handler
 		backImage.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			Parent root = null;
 			try {
-				root = FXMLLoader.load(getClass().getResource("MainPageUser.fxml"));
+				scener.changeSceneWithMouse(event, "MainPageUser.fxml");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			stage.close();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
 	     });
 		
 		
