@@ -1,5 +1,5 @@
 package db;
-
+//import discount.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 //import services.Service;
+
 
 public class DBConnection {
 	private Connection connection;
@@ -217,4 +218,19 @@ public class DBConnection {
 			}
 			
 		}
+		
+		public ResultSet calcServiceDiscount() throws SQLException
+		{
+			String nquery = "select * from ServiceDiscount;";
+			ResultSet res = statement.executeQuery(nquery);
+			return res;
+		}
+		
+		public ResultSet calcTransactionDiscount() throws SQLException
+		{
+			String nquery = "select * from TransactionDiscount;";
+			ResultSet res = statement.executeQuery(nquery);
+			return res;
+		}
+
 }
