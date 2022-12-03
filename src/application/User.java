@@ -89,6 +89,11 @@ public class User extends AppUser{
 
 		
 	}
+	
+	public void checkDiscounts()
+	{
+		
+	}
 
 }
 

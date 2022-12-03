@@ -21,6 +21,15 @@ public class Admin extends AppUser{
 	{
 		rman.setNewRefundState(newState, refundID);
 	}
+	
+	public void addDiscountOverAll (/*dicount ratio*/)
+	{
+		
+	}
+	public void addDiscountSpecific ()
+	{
+		
+	}
 
 }
 
