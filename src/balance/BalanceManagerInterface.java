@@ -3,6 +3,7 @@ package balance;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import application.User;
 import db.DBConnection;
 
 public abstract class BalanceManagerInterface {
@@ -26,17 +27,17 @@ public abstract class BalanceManagerInterface {
         }
         return false;
     }
-    public String consumeBalance(int amount, String username, String serviceName, String cardNumber, int pin) {
+    public String consumeBalance(float amount,  User user, String serviceName, String cardNumber, int pin) {
             //Template steps
             //1.Check payment method - if balance consume from balance - if credit card check credit details - if at home add delivery at home
             //2. transaction shared functionality
-            return consumeMoney(username, amount, cardNumber, pin, serviceName);
+            return consumeMoney(user, amount, cardNumber, pin, serviceName);
             //Consume money calls transaction if succeeded 
         
     }
     
-    public abstract String consumeMoney(String username, int amount, String cardNumber, int pin, String serviceName);
-    public void transaction(String userName, int amount, String serviceName) {
+    public abstract String consumeMoney(User user, float amount, String cardNumber, int pin, String serviceName);
+    public void transaction(String userName, float amount, String serviceName) {
         
         balanceObject.insertTransaction(userName, amount, serviceName);
         

@@ -52,6 +52,10 @@ public class User extends AppUser{
 		
 	}
 	
+	public void setWalletBalance(int wallet) {
+		walletBalance = wallet;
+		
+	}
 	public int getBalance() {
 		return walletBalance;
 	}
@@ -67,7 +71,7 @@ public class User extends AppUser{
 		}
 	}
 	
-	public String consumeBalance(int amount, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String consumeBalance(float amount, String serviceName, int paymentMethod, String cardNumber, int pin) {
 		
 		//Based on payment method call one of the three options
 		BalanceManagerInterface balanceManagerInterface = null;
@@ -85,7 +89,7 @@ public class User extends AppUser{
 			balanceManagerInterface = new CreditCardManager();
 		}
 		System.out.println("Inside user" + amount);
-		return balanceManagerInterface.consumeBalance(amount, this.getUsername(), serviceName, cardNumber, pin);
+		return balanceManagerInterface.consumeBalance(amount, this, serviceName, cardNumber, pin);
 
 		
 	}

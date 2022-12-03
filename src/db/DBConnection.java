@@ -204,7 +204,7 @@ public class DBConnection {
 			return null;
 		}
 		
-		public void insertTransaction(String userName, int amount, String serviceName) {
+		public void insertTransaction(String userName, float amount, String serviceName) {
 			String newQuery= "insert into Transactions (Username, Amount, Service) values ('"+userName+"', '" + amount + "', '" + serviceName + "')";
 			try {
 				statement.executeUpdate(newQuery);
@@ -223,6 +223,12 @@ public class DBConnection {
 			return res;
 		}
 		
+		public void setServiceDiscount(float ratio) {
+			
+		}
+		
+	
+		
 		public ResultSet calcTransactionDiscount() throws SQLException
 		{
 			String nquery = "select * from TransactionDiscount;";
@@ -230,6 +236,9 @@ public class DBConnection {
 			return res;
 		}
 
+		public void setTransactionDiscount(float ratio) {
+			
+		}
 
 		public ResultSet getTransactions(String user) throws SQLException {
 			String query = "select * from Transactions Where Username = '" + user + "'";

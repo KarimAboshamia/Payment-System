@@ -40,10 +40,10 @@ public abstract class Provider {
 	}
 	
 
-	public String handleUserData(Map<String,String> textFieldsInput, Map<String, String>dropDownInput, User user, String serviceName, int paymentMethod, String cardNumber, int pin) {
+	public String handleUserData(Map<String,String> textFieldsInput, Map<String, String>dropDownInput, User user, String serviceName, int paymentMethod) {
 		
 		//Create transaction with the username and service details 
 		//Takes users replies on the form and handle it 
-		return handleData.handleUserData(textFieldsInput, dropDownInput, user, serviceName, paymentMethod, cardNumber, pin);
+		return handleData.handleUserData(textFieldsInput, dropDownInput, user, serviceName, paymentMethod);
 	}
 }

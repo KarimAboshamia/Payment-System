@@ -2,6 +2,7 @@ package scenes;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -25,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import providers.Provider;
@@ -37,17 +39,30 @@ public class ProviderFormController {
 	ChangeScenes scener;
 	Provider provider;
 	DiscountScenario discountCalcObj = new DiscountScenario();
+	Discount s = new OverDiscount();
 	
 	Vector<String> textFieldData;
 	Map<String, List<String>> dropDownData;
+	
+	Map<String, String> textFieldInput;
+	Map<String, String> dropDownInput;
 	User user;
 	Service service;
+	int paymentMethod;
+	String cardNumber;
+	int pin;
 	
 	@FXML
 	GridPane grid;
 	
 	@FXML
 	ImageView backImage;
+	
+	@FXML
+	AnchorPane anchorPane;
+	
+	@FXML
+	Label transactionText;
 	
 	public ProviderFormController() {
 		scener = new ChangeScenes();
@@ -57,6 +72,8 @@ public class ProviderFormController {
 		service = communicator.getService();
 		textFieldData = provider.getTextFieldData();
 		dropDownData = provider.getDropDownData();
+		textFieldInput = new HashMap<>();
+		dropDownInput = new HashMap<>();
 		
 	}
 	
@@ -136,7 +153,7 @@ public class ProviderFormController {
 		final int c3 = counter+1;
 		btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			//Call discount and check discount object if there's an offer and display it 
-			Discount s = new OverDiscount();
+			
 			try {
 				s = discountCalcObj.calcOverallDiscount(new OverDiscount(), user);
 			} catch (SQLException e) {
@@ -145,6 +162,7 @@ public class ProviderFormController {
 			}
 			Label discountRatio = new Label("Discount Ratio: " + s.getDiscount() + "%");
 			System.out.println(s.getDiscount());
+			
 			grid.add(discountRatio, 0, c3);
 			event.consume();
 	     });	
@@ -160,7 +178,36 @@ public class ProviderFormController {
 	@FXML
 	public void submitForm(ActionEvent event) {
 		
-		//provider.handleUserData(inputFields, user, serviceName, paymentMethod, cardNumber, pin)
+		for(Node node : anchorPane.getChildren()) {
+			if(node instanceof GridPane) {
+				for(Node node2 : ((GridPane) node).getChildren()) {
+					if(node2 instanceof TextField) {
+						if(((TextField)node2).getPromptText().equals("Amount")) {
+							String balanceAfterOffer = Float.toString( Integer.parseInt(((TextField)node2).getText()) * (1 - (s.getDiscount()/100)) );
+							textFieldInput.put(((TextField)node2).getPromptText(), balanceAfterOffer);	
+						} else {
+							textFieldInput.put(((TextField)node2).getPromptText(), ((TextField)node2).getText());	
+						}
+					} else if(node2 instanceof RadioButton) {
+						if(((RadioButton)node2).isSelected() == true) {
+							if(((RadioButton)node2).getText().equals("Wallet")) {
+								paymentMethod = 0;
+							} else if(((RadioButton)node2).getText().equals("Credit Card")) {
+								paymentMethod = 2;
+							} else {
+								paymentMethod = 1;
+							}	
+						} 	
+					}
+				}				
+			}
+			
+		}
+		
+		transactionText.setText(provider.handleUserData(textFieldInput, dropDownInput, user, service.getName(), paymentMethod));
+		
+		//User balance should be updated 
+		
 		
 	}
 
