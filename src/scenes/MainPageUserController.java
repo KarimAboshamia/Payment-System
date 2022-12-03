@@ -47,7 +47,7 @@ public class MainPageUserController {
 		
 		notificationsObservable.subscribe(user);
 		ResultSet res = user.readNotification();
-		int counter = 1;
+		int counter = 0;
 		while(res.next()) {
 			System.out.println(res.getString("RefundID"));
 			counter++;
