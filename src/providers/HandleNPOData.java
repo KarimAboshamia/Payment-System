@@ -13,7 +13,6 @@ public class HandleNPOData implements HandleData {
 	String cardNumber = "";
 	int pin = 0;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
-		System.out.println("Handling Donations data");
 		
 		organizationName= inputFields.get("To");
 		amount = (float) (Float.parseFloat((inputFields.get("Amount"))) * 1.4);

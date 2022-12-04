@@ -8,7 +8,6 @@ public class WalletBalanceManager extends BalanceManagerInterface {
     public String consumeMoney(User  user, float amount, String cardNumber, int pin, String serviceName) {
         int balance = Integer.parseInt(balanceObject.getBalance(user.getUsername()));
         if(balance >= amount) {
-            System.out.println("User money charge " + amount);
             balance -= amount;
             user.setWalletBalance(balance);
             balanceObject.setBalance(balance, user.getUsername());

@@ -11,7 +11,6 @@ public class HandleMonthlyReceiptData implements HandleData{
 	String cardNumber = "";
 	int pin = 0;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
-		System.out.println("Handling Monthly Receipt data");
 		
 		landLine = inputFields.get("lanLine");
 		amount = (float) (Float.parseFloat((inputFields.get("Amount"))) * 1.12);

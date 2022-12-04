@@ -10,7 +10,6 @@ public class HandleWeData implements HandleData{
 	String cardNumber = "";
 	int pin = 0;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
-		System.out.println("Handling vodafone data");
 		
 		phoneNumber = inputFields.get("phoneNumber");
 		amount = Float.parseFloat((inputFields.get("Amount")));

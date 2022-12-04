@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 public class SignUpSceneController {
 	
 	private AuthenticationManager authObj = new AuthenticationManager();
+	ChangeScenes scener = new ChangeScenes();
 
 	@FXML
 	private TextField email;
@@ -36,11 +37,8 @@ public class SignUpSceneController {
 			
 			Parent root;
 			try {
-				root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
-				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-				Scene scene = new Scene(root);
-				stage.setScene(scene);
-				stage.show();
+				scener.changeScene(event, "MainScene.fxml");
+			
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

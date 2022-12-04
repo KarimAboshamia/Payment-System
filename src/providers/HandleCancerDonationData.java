@@ -11,7 +11,6 @@ public class HandleCancerDonationData implements HandleData {
 	String city;
 	String identity;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
-		System.out.println("Handling Donations data");
 		
 		donationName= inputFields.get("To");
 		amount = (float) (Float.parseFloat((inputFields.get("Amount"))) * 1.2);

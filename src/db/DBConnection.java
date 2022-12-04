@@ -53,7 +53,6 @@ public class DBConnection {
 			byte[] result = md.digest(password.getBytes());
 			
 			String pass = new String(result);
-			System.out.println(pass);
 			
 			String query1 = "select * from Users WHERE Username = '" + username + "'";
 			String query2 = "select * from Users WHERE Email = '" + email + "'";
@@ -81,7 +80,6 @@ public class DBConnection {
 		try {
 			md = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		byte[] result = md.digest(password.getBytes());
@@ -91,7 +89,6 @@ public class DBConnection {
 		try {
 			statement.executeUpdate(query3);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -104,7 +101,6 @@ public class DBConnection {
 				 rs=statement.executeQuery(nameQuery);
 			
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return rs;
@@ -118,7 +114,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -131,7 +126,6 @@ public class DBConnection {
 			try {
 				res = statement.executeQuery(nquery);			
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return res;
@@ -146,7 +140,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(nquery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -157,7 +150,6 @@ public class DBConnection {
 				ResultSet result = statement.executeQuery(query);
 				return result;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -172,7 +164,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(nquery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -180,25 +171,20 @@ public class DBConnection {
 		
 		
 		public void setBalance(int balance, String username) {
-			System.out.println("Charging Balance " + balance);
 			String query = "UPDATE Users SET Wallet ='" + balance +"' WHERE Username = '" +  username + "'";
 			try {
-				System.out.println("Setting Balance");
 				statement.executeUpdate(query);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
 		public String getBalance(String username) {
 			String query = "select * from Users WHERE Username = '" +  username + "'";
-			System.out.println(username);
 			try {
 				ResultSet result = statement.executeQuery(query);
 				return result.getString("Wallet");
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -209,7 +195,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -227,7 +212,6 @@ public class DBConnection {
 				ResultSet result2 = statement.executeQuery(query);
 				return result2;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -240,7 +224,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(query);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -278,7 +261,6 @@ public class DBConnection {
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

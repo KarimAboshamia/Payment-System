@@ -13,7 +13,6 @@ public class ServiceDiscount extends DiscountDec {
 	
 	@Override
 	public float getDiscount() {
-		// TODO Auto-generated method stub
 		return discountRatio;
 	}
 }

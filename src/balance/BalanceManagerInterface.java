@@ -28,12 +28,7 @@ public abstract class BalanceManagerInterface {
         return false;
     }
     public String consumeBalance(float amount,  User user, String serviceName, String cardNumber, int pin) {
-            //Template steps
-            //1.Check payment method - if balance consume from balance - if credit card check credit details - if at home add delivery at home
-            //2. transaction shared functionality
-            return consumeMoney(user, amount, cardNumber, pin, serviceName);
-            //Consume money calls transaction if succeeded 
-        
+            return consumeMoney(user, amount, cardNumber, pin, serviceName);        
     }
     
     public abstract String consumeMoney(User user, float amount, String cardNumber, int pin, String serviceName);

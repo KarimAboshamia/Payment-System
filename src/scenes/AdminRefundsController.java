@@ -70,10 +70,8 @@ public class AdminRefundsController {
 							admin.changeState("1", accept.getId());
 							scener.changeSceneWithMouse(event, "AdminRefunds.fxml");
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						event.consume();
@@ -85,10 +83,8 @@ public class AdminRefundsController {
 							scener.changeSceneWithMouse(event, "AdminRefunds.fxml");
 
 						} catch (SQLException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}					
 						event.consume();

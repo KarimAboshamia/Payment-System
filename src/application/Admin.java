@@ -12,7 +12,6 @@ public class Admin extends AppUser{
 	
 	public Admin(String email, String username, String password, String permission) {
 		super(email, username, password, permission);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public ResultSet listRefunds(){

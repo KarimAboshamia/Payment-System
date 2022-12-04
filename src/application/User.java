@@ -25,7 +25,6 @@ public class User extends AppUser{
 	public User(String email, String username, String password, String permission, int Balance) {
 		super(email, username, password, permission);
 		walletBalance = Balance;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void requestRefund(String transId) throws SQLException

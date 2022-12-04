@@ -11,7 +11,6 @@ public class HandleInternetData implements HandleData {
 	String cardNumber = "";
 	int pin = 0;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
-		System.out.println("Handling Etisalat Ground phone internet data");
 		
 		phoneNumber = inputFields.get("PhoneNumber");
 		amount = Float.parseFloat((inputFields.get("Amount")));

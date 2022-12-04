@@ -50,7 +50,6 @@ public class CreateRefundController {
 			try {
 				scener.changeSceneWithMouse(event, "MainPageUser.fxml");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	     });
@@ -73,7 +72,6 @@ public class CreateRefundController {
 						user.requestRefund(btn.getId());
 						displaymsg.setText("Refund Request Sent");
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					event.consume();

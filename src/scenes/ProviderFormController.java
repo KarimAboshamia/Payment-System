@@ -84,7 +84,6 @@ public class ProviderFormController {
 			try {
 				scener.changeSceneWithMouse(event, "MainPageUser.fxml");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	     });

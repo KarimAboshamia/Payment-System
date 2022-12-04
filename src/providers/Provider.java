@@ -5,10 +5,8 @@ import application.User;
 
 public abstract class Provider {
 	private String providerName;
-	//Vector<String> textField = new Vector<String>();
 	Map<String,String> textField =new HashMap<>();
 	Map<String, ArrayList<String>> dropDownFields = new HashMap<>();
-	//Vector<String> dropField = new Vector<String>();
 	UserData userData;
 	HandleData handleData;
 	

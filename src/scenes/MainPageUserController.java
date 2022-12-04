@@ -40,7 +40,6 @@ public class MainPageUserController {
 			try {
 				scener.changeSceneWithMouse(event, "Notifications.fxml");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});

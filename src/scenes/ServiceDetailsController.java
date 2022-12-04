@@ -40,7 +40,6 @@ public class ServiceDetailsController {
 			try {
 				scener.changeSceneWithMouse(event, "ServicesView.fxml");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -61,7 +60,6 @@ public class ServiceDetailsController {
 					}
 					scener.changeSceneWithMouse(event, "ProviderForm.fxml");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			});
