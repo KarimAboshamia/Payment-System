@@ -162,7 +162,7 @@ public class ProviderFormController {
 			//Call discount and check discount object if there's an offer and display it 
 			
 			try {
-				s = discountCalcObj.calcOverallDiscount(new OverDiscount(), user);
+				s = discountCalcObj.calcOverallDiscount(new OverDiscount(), user, service.getName());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

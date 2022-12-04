@@ -7,6 +7,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.AdminDiscountController">
@@ -18,12 +21,20 @@
          </font>
       </Label>
       <TextField fx:id="discountRat" layoutX="225.0" layoutY="149.0" promptText="Discount Ratio" />
-      <Button layoutX="274.0" layoutY="220.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <Button layoutX="273.0" layoutY="295.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
       <ImageView fx:id="backImage" fitHeight="18.0" fitWidth="28.0" layoutX="25.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../arrow.png" />
          </image>
       </ImageView>
-      <Label fx:id="result" layoutX="245.0" layoutY="190.0" prefHeight="18.0" prefWidth="111.0" />
+      <Label fx:id="result" layoutX="244.0" layoutY="264.0" prefHeight="18.0" prefWidth="111.0" />
+      <GridPane fx:id="serviceName" layoutX="250.0" layoutY="197.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>

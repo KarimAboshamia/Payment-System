@@ -7,13 +7,16 @@ import db.*;
 
 public class ServiceDiscountManager {
 	DBConnection dbobj = DBConnection.getDB();
-	public Discount calcDiscount(Discount discount) throws SQLException
+	public Discount calcDiscount(Discount discount, String name) throws SQLException
 	{
 		ResultSet overall= dbobj.calcServiceDiscount();
-		
 		while(overall.next())
 		{
-			discount = new ServiceDiscount(discount, Float.parseFloat(overall.getString("DiscountRatio")));
+			System.out.println(overall.getString("Service"));
+			if(name.toLowerCase().contains(overall.getString("Service").toLowerCase())) {
+				System.out.println("Hereeee");
+				discount = new ServiceDiscount(discount, Float.parseFloat(overall.getString("DiscountRatio")));
+			}
 		}
 		return discount;
 	}
@@ -22,7 +25,7 @@ public class ServiceDiscountManager {
 		dbobj.setTransactionDiscount(ratio);
 	}
 	
-	public void setServiceDiscount(float ratio) {
-		dbobj.setServiceDiscount(ratio);
+	public void setServiceDiscount(float ratio, String name) {
+		dbobj.setServiceDiscount(ratio, name);
 	}
 }

@@ -11,7 +11,7 @@ public class HandleOrangeData implements HandleData{
 	int pin = 0;
 	public String handleUserData(Map<String,String> inputFields, Map<String, String> dropFields,User user, String serviceName, int paymentMethod) {
 		
-		phoneNumber = inputFields.get("phoneNumber");
+		phoneNumber = inputFields.get("PhoneNumber");
 		amount = Float.parseFloat((inputFields.get("Amount")));
 		if(paymentMethod == 2) {
 			cardNumber = inputFields.get("Credit Details");

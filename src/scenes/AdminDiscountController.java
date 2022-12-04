@@ -8,9 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 public class AdminDiscountController {
 	
@@ -28,6 +30,10 @@ public class AdminDiscountController {
 	TextField discountRat;
 	@FXML
 	Label result;
+	@FXML
+	GridPane serviceName;
+	TextField f = new TextField();
+
 	
 	public AdminDiscountController() {
 		communicator = DataCommunicator.getCommunicator();
@@ -46,19 +52,28 @@ public class AdminDiscountController {
 			}
 	     });
 		
+		choices.setValue("Transaction");
 		choices.getItems().add("Transaction");
-		choices.getItems().add("Overall");
+		choices.getItems().add("Service");
+		choices.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			
+			 if (choices.getSelectionModel().getSelectedItem().equals("Service")) {
+				 f.setPromptText("Service Name");
+				 serviceName.add(f, 0, 0);
+			} else {
+				serviceName.getChildren().remove(f);
+			}
+	     });
 	}
 	
 	@FXML
 	public void submit(ActionEvent event) {
 		float discountR = Float.parseFloat(discountRat.getText());
 		if(choices.getSelectionModel().getSelectedItem().equals("Transaction")) {
-			System.out.println("Adding");
 			admin.addTransactionDiscount(discountR);
 			
-		}else if (choices.getSelectionModel().getSelectedItem().equals("Overall")) {
-			admin.addOverallDiscount(discountR);
+		}else if (choices.getSelectionModel().getSelectedItem().equals("Service")) {
+			admin.addServiceDiscount(discountR, ((TextField)serviceName.getChildren().get(0)).getText());
 		}
 		
 		result.setText("Added Successfully");

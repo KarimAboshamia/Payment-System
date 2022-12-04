@@ -237,9 +237,9 @@ public class DBConnection {
 			return res;
 		}
 		
-		public void setServiceDiscount(float ratio) {
+		public void setServiceDiscount(float ratio, String name) {
 			
-			String newQuery= "insert into ServiceDiscount (DiscountRatio) values ('" + ratio+ "')";
+			String newQuery= "insert into ServiceDiscount (DiscountRatio, Service) values ('" + ratio+ "'," + "'" + name + "')";
 			try {
 				statement.executeUpdate(newQuery);
 			} catch (SQLException e) {

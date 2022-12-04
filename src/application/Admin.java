@@ -29,9 +29,9 @@ public class Admin extends AppUser{
 		discountManager.setTransDiscount(discountRatio);
 		
 	}
-	public void addOverallDiscount (float discountRatio)
+	public void addServiceDiscount (float discountRatio, String name)
 	{
-		discountManager.setServiceDiscount(discountRatio);
+		discountManager.setServiceDiscount(discountRatio, name);
 	}
 
 }

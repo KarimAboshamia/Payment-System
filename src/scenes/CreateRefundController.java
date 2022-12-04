@@ -3,6 +3,8 @@ package scenes;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import application.User;
 import balance.BalanceManagerInterface;
@@ -34,6 +36,7 @@ public class CreateRefundController {
 	Label displaymsg;
 	
 	ChangeScenes scener = new ChangeScenes();
+	Set<String> set = new HashSet<String> (); 
 	
 	public CreateRefundController(){
 		DataCommunicator communicator = DataCommunicator.getCommunicator();
@@ -69,8 +72,12 @@ public class CreateRefundController {
 			btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 				//OnClicking refund -> a new refund is created based on refund id
 					try {
-						user.requestRefund(btn.getId());
-						displaymsg.setText("Refund Request Sent");
+						if(set.contains(btn.getId())) {
+							displaymsg.setText("Request Already Sent");							
+						} else {
+							user.requestRefund(btn.getId());
+							set.add(btn.getId());
+						}
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}

@@ -8,10 +8,10 @@ public class DiscountScenario {
 	Discount obj;
 	TrasnactionDiscountManager objT =new TrasnactionDiscountManager();
 	ServiceDiscountManager objS = new ServiceDiscountManager();
-	public Discount calcOverallDiscount(Discount obj, User user) throws SQLException
+	public Discount calcOverallDiscount(Discount obj, User user, String name) throws SQLException
 	{
 		obj=objT.calcDiscount(obj, user);
-		obj=objS.calcDiscount(obj);
+		obj=objS.calcDiscount(obj, name);
 		return obj;
 		
 	}
