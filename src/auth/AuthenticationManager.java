@@ -22,26 +22,20 @@ public class AuthenticationManager {//Manager
 			byte[] result = md.digest(password.getBytes());
 			
 			String pass = new String(result); //Convert Byte Array to String
-			
+			String editedPass = "u" + pass + "u";
 			ResultSet res = authObj.checkLogin(email);
 			
-			System.out.println(res.getString("Password"));			
 
 			
-			if(pass.equals(res.getString("Password"))) {
+			if(editedPass.equals(res.getString("Password"))) {
 				if(res.getInt("Permission") == 1) {
-					System.out.println("Admin Logged In Sucessfully");	
 					return new Admin(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"));
 				}else {
-					System.out.println("You have Logged In Successfully");
 					return new User(res.getString("Email"), res.getString("Username"),res.getString("Password"),res.getString("Permission"), Integer.parseInt(res.getString("Wallet")));
 
 				}
-			}else {
-				System.out.println("Wrong Email or Password");
 			}
-				
-			
+					
 
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();

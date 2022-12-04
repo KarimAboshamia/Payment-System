@@ -84,8 +84,10 @@ public class DBConnection {
 		}
 		byte[] result = md.digest(password.getBytes());
 		String pass = new String(result);
+		String editedPass = "u" + pass + "u";
 
-		String query3 = "INSERT INTO Users (Email, Username, Password, Permission) VALUES(" +"'"+email+"'"+","+ "'" +username + "'" + "," + "'" +pass + "'" +"," + permission + ")";
+
+		String query3 = "INSERT INTO Users (Email, Username, Password, Permission) VALUES(" +"'"+email+"'"+","+ "'" +username + "'" + "," + "'" +editedPass + "'" +"," + permission + ")";
 		try {
 			statement.executeUpdate(query3);
 		} catch (SQLException e) {
