@@ -19,7 +19,22 @@ public class RefundManager {
 
 	}
 	
-	public void setNewRefundState(String newState, String refundID) {
+	public void setNewRefundState(String newState, String refundID) throws SQLException {
+		
+		//if new state is 1
+		if(newState.equals("1")) {
+			ResultSet res = newdb.getRelatedTransaction(refundID);
+			String amount = res.getString("Amount");
+			String name = res.getString("Username");
+			String transID = res.getString("TransactionID");
+			String wallet = newdb.getBalance(name);
+			
+			float newBalance = Float.parseFloat(wallet) + Float.parseFloat(amount);
+			newdb.setBalance((int) newBalance, name);
+			
+			newdb.removeTransaction(transID);
+			
+		}
 		newdb.updateState(newState, refundID);
 		
 	}

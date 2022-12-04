@@ -67,8 +67,13 @@ public class NotificationsController {
 			btn.setId((res.getString("RefundID")));
 			
 			btn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-				//OnClicking refund -> a new refund is created based on refund id
 					user.markRead(btn.getId());
+					try {
+						scener.changeSceneWithMouse(event, "Notifications.fxml");
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					event.consume();
 		     });			
 			

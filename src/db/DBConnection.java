@@ -215,6 +215,35 @@ public class DBConnection {
 			
 		}
 		
+		public ResultSet getRelatedTransaction(String refundID) {
+			String query = "SELECT * FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE RefundID = '" + refundID + "'"; 
+			//String query = "select * from RefundReq WHERE RefundID = '" +  refundID + "'";
+			
+			try {
+				//ResultSet result = statement.executeQuery(query);
+				//String transID = result.getString("TransactionID");
+				//result.close();
+				//query = "select * from Transactions WHERE TransactionID = '" +  transID + "'";
+				ResultSet result2 = statement.executeQuery(query);
+				return result2;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+			
+		}
+		
+		
+		public void removeTransaction(String transactionID) {
+			String query = "delete from Transactions WHERE TransactionID = '" +  transactionID + "'";
+			try {
+				statement.executeUpdate(query);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		public ResultSet calcServiceDiscount() throws SQLException
 		{

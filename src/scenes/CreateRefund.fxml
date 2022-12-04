@@ -31,5 +31,6 @@
             <Image url="@../../../arrow.png" />
          </image>
       </ImageView>
+      <Label fx:id="displaymsg" layoutX="241.0" layoutY="291.0" prefHeight="18.0" prefWidth="135.0" />
    </children>
 </AnchorPane>

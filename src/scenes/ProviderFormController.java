@@ -102,6 +102,10 @@ public class ProviderFormController {
 		//Add all dropdown Fields
 		if(dropDownData != null) {
 			for (Map.Entry<String, List<String>> key : dropDownData.entrySet()) {
+				Label lb = new Label();
+				lb.setText(key.getKey());
+				grid.add(lb, 0, counter);
+				counter++;
 				ChoiceBox<String> choiceBox = new ChoiceBox<>();
 				List<String> data = key.getValue();
 				for(int i = 0; i < data.size(); i++) {
@@ -132,15 +136,19 @@ public class ProviderFormController {
 	    
 	    final int c = counter;
 	    final int c2 = counter+1;
+	    TextField field = new TextField();
+	    
+	    TextField field2 = new TextField();
 		//If credit card selected ask for credit card details
 	    paymentGroup.selectedToggleProperty().addListener((observable, oldToggle, option) -> {
 	    	if (option == credit) {
-	    		TextField field = new TextField();
 				field.setPromptText("Credit Details");
 				grid.add(field, 0, c);  
-				TextField field2 = new TextField();
 				field2.setPromptText("PIN");
 				grid.add(field2, 0, c2);
+ 	       } else {
+ 	    	   grid.getChildren().remove(field);
+ 	    	   grid.getChildren().remove(field2);
  	       }
 	    });
 	    counter+=2;

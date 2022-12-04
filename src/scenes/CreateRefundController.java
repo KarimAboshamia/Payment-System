@@ -30,6 +30,8 @@ public class CreateRefundController {
 	BalanceManagerInterface manager;
 	@FXML
 	ImageView backImage;
+	@FXML
+	Label displaymsg;
 	
 	ChangeScenes scener = new ChangeScenes();
 	
@@ -69,6 +71,7 @@ public class CreateRefundController {
 				//OnClicking refund -> a new refund is created based on refund id
 					try {
 						user.requestRefund(btn.getId());
+						displaymsg.setText("Refund Request Sent");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

@@ -66,12 +66,31 @@ public class AdminRefundsController {
 				
 				
 				accept.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-						admin.changeState("1", accept.getId());
+						try {
+							admin.changeState("1", accept.getId());
+							scener.changeSceneWithMouse(event, "AdminRefunds.fxml");
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						event.consume();
 			     });
 				
 				reject.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-						admin.changeState("-1", reject.getId());					
+						try {
+							admin.changeState("-1", reject.getId());
+							scener.changeSceneWithMouse(event, "AdminRefunds.fxml");
+
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}					
 						event.consume();
 				});			
 			

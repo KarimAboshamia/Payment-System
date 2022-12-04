@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import discount.ServiceDiscountManager;
 import refund.RefundManager;
@@ -19,7 +20,7 @@ public class Admin extends AppUser{
 		return res;
 	}
 	
-	public void changeState(String newState, String refundID)
+	public void changeState(String newState, String refundID) throws SQLException
 	{
 		refundManager.setNewRefundState(newState, refundID);
 	}
