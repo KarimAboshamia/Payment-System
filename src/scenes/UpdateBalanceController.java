@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -29,6 +30,8 @@ public class UpdateBalanceController {
 	PasswordField PIN;
 	@FXML
 	ImageView backImage;
+	@FXML
+	Label msg;
 	
 	ChangeScenes scener = new ChangeScenes();
 	@FXML
@@ -52,9 +55,10 @@ public class UpdateBalanceController {
 	
 	@FXML
 	public void addBalance(ActionEvent event) {
+		String returnMSG = user.setBalance(Card.getText(), Integer.parseInt(PIN.getText()), Integer.parseInt(Amount.getText()));
+		msg.setText(returnMSG);
 		
-		System.out.println("Setting Balance");
-		user.setBalance(Card.getText(), Integer.parseInt(PIN.getText()), Integer.parseInt(Amount.getText()));
+		
 		
 	}
 	

@@ -27,6 +27,8 @@ public abstract class BalanceManagerInterface {
         }
         return false;
     }
+    
+    //Start of transaction using form
     public String consumeBalance(float amount,  User user, String serviceName, String cardNumber, int pin) {
             return consumeMoney(user, amount, cardNumber, pin, serviceName);        
     }
@@ -38,6 +40,7 @@ public abstract class BalanceManagerInterface {
         
       
     }
+    //End of transaction using form
     
     public ResultSet getTransactions(String username) throws SQLException {
     	return balanceObject.getTransactions(username);

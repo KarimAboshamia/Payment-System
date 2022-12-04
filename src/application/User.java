@@ -59,15 +59,14 @@ public class User extends AppUser{
 		return walletBalance;
 	}
 	
-	public boolean setBalance(String cardNumber, int pin, int balance) {
+	public String setBalance(String cardNumber, int pin, int balance) {
 		//call balance manager if credit card manager returned true
+		balanceManagerInterface = new CreditCardManager();
 		if(creditManager.checkCredit(cardNumber, pin)) {
-			walletBalance = balanceManagerInterface.setBalance(balance, this.getUsername());
-			return true;
+			balanceManagerInterface.setBalance(balance, this.getUsername());
+			return "Successfully Charged";
 		}
-		else {
-			return false;
-		}
+		return "Wrong card Number";
 	}
 	
 	public String consumeBalance(float amount, String serviceName, int paymentMethod, String cardNumber, int pin) {
