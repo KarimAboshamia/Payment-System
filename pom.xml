@@ -35,13 +35,13 @@
 	    <version>0.7.12</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
+<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
 <dependency>
     <groupId>org.openjfx</groupId>
-    <artifactId>javafx-graphics</artifactId>
-    <version>20-ea+9</version>
+    <artifactId>javafx</artifactId>
+    <version>11</version>
+    <type>pom</type>
 </dependency>
-	
 	
 </dependencies>  
 
