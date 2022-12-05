@@ -3,7 +3,7 @@ package providers;
 import java.util.Vector;
 
 import application.User;
-import auth.AuthenticationManager;
+import managers.AuthenticationManager;
 import services.MobileService;
 import services.Service;
 

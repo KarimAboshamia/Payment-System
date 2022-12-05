@@ -3,8 +3,8 @@ package application;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import discount.ServiceDiscountManager;
-import refund.RefundManager;
+import managers.RefundManager;
+import managers.ServiceDiscountManager;
 
 public class Admin extends AppUser{
 	RefundManager refundManager = new RefundManager();

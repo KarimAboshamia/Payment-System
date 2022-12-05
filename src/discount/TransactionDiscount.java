@@ -3,7 +3,6 @@ package discount;
 import application.User;
 
 public class TransactionDiscount extends DiscountDec {
-	Discount obj;
 	float discountRatio;
 	TransactionDiscount(Discount obj, float discountRatio)
 	{

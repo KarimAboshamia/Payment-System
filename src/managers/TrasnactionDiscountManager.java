@@ -1,5 +1,7 @@
-package discount;
+package managers;
 import db.*;
+import discount.Discount;
+import discount.ServiceDiscount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

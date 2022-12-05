@@ -13,8 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import managers.ServiceManager;
 import services.Service;
-import services.ServiceManager;
 
 public class ServicesViewController {	
 	@FXML

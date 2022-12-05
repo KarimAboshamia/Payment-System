@@ -3,6 +3,7 @@ package refund;
 import java.sql.ResultSet;
 
 import application.User;
+import managers.NotificationManager;
 
 public class NotificationsObservable implements Observable {
 	User currentUser;

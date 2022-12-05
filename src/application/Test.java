@@ -3,7 +3,7 @@ package application;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import auth.AuthenticationManager;
+import managers.AuthenticationManager;
 import refund.NotificationsObservable;
 import refund.Observable;
 

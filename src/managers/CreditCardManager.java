@@ -1,4 +1,4 @@
-package balance;
+package managers;
 
 import application.User;
 

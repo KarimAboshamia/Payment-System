@@ -13,14 +13,11 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 
 public class MainSceneController {
+	ChangeScenes scener = new ChangeScenes();
 	@FXML
 	public void handlerLogin(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("LoginScene.fxml"));
-			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			scener.changeScene(event, "LoginScene.fxml");
 			
 
 		} catch (IOException e) {
@@ -32,11 +29,7 @@ public class MainSceneController {
 	@FXML 
 	public void handlerSignUp(ActionEvent event) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("SignUpScene.fxml"));
-			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			scener.changeScene(event, "SignUpScene.fxml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	

@@ -3,6 +3,8 @@ package discount;
 import java.sql.SQLException;
 
 import application.User;
+import managers.ServiceDiscountManager;
+import managers.TrasnactionDiscountManager;
 
 public class DiscountScenario {
 	Discount obj;

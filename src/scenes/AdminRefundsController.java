@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import refund.RefundManager;
+import managers.RefundManager;
 
 public class AdminRefundsController {
 	

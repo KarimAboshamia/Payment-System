@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import application.User;
-import balance.BalanceManagerInterface;
-import balance.WalletBalanceManager;
 import communication.DataCommunicator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,13 +21,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+import managers.BalanceManagerInterface;
+import managers.WalletBalanceManager;
 
 public class CreateRefundController {
 	
 	User user;
+	BalanceManagerInterface manager;
+
 	@FXML 
 	GridPane grid;
-	BalanceManagerInterface manager;
 	@FXML
 	ImageView backImage;
 	@FXML

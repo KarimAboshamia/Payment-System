@@ -4,14 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import balance.BalanceManagerInterface;
-import balance.CreditCardManager;
-import balance.DeliveryAtHomeManager;
-import balance.WalletBalanceManager;
-import refund.NotificationManager;
-import refund.RefundManager;
+import managers.BalanceManagerInterface;
+import managers.CreditCardManager;
+import managers.DeliveryAtHomeManager;
+import managers.NotificationManager;
+import managers.RefundManager;
+import managers.ServiceManager;
+import managers.WalletBalanceManager;
 import services.Service;
-import services.ServiceManager;
 
 public class User extends AppUser{
 	int walletBalance;

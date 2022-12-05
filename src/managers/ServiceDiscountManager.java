@@ -1,9 +1,11 @@
-package discount;
+package managers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.User;
 import db.*;
+import discount.Discount;
+import discount.ServiceDiscount;
 
 public class ServiceDiscountManager {
 	DBConnection dbobj = DBConnection.getDB();

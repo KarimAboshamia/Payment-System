@@ -4,10 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import managers.AuthenticationManager;
+
 import java.io.IOException;
 
 import application.AppUser;
-import auth.AuthenticationManager;
 import communication.DataCommunicator;
 import javafx.event.ActionEvent;
 
