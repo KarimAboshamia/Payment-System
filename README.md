@@ -3,6 +3,10 @@
 
 # Installation
 1. Run it as Maven Project
+2. Download JavaFx from market place - Download JavaFX library from the following link: https://gluonhq.com/products/javafx/
+3. Add the FX library -  Window - Preferences - JavaFX - Path to the SDK
+4. Download sqlite jdbc using the following link https://search.maven.org/artifact/org.xerial/sqlite-jdbc
+5. Add jdbc to build path (If Needed)
 
 # Requirements 
 ## User
