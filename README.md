@@ -1,5 +1,9 @@
 # Payment_System
 ## A mock-up for payment systems like Fawry
+
+# Installation
+1. Run it as Maven Project
+
 # Requirements 
 ## User
 1. The user should be able to signin to the system. Given the user’s email and a password, the user can login to the system and use any of the system functionalities.
@@ -16,9 +20,4 @@ a. Overall discounts. For example the user should have 10% discount for the firs
 b. Specific discount.. For example the admin can apply 20% discount for all mobile recharge services.
 For any given service. All overall discounts and specific discounts for this service should apply.
 3. The admin should be able to list all refund requests. Each refund request should contain the related service and the amount to be refunded. The admin should be able to accept or reject any refund request and if any refund request got accepted a refund transaction should be processed.
-# Installation
-1. SceneBuilder: https://gluonhq.com/products/javafx/ - add to Preferences - JavaFX
-2. JavaFX: https://gluonhq.com/products/javafx/ - add to Preferences - JavaFX
-3. Add Module Path to run: --module-path "\path\to\javafx-sdk-19\lib" --add-modules javafx.controls,javafx.fxml
-4. sqlite-jdbc: https://github.com/xerial/sqlite-jdbc/releases/download/3.40.0.0/sqlite-jdbc-3.40.0.0.jar - Project - Build Path - Configure Build Path - Libraries & Add External JARs
 
