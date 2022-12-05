@@ -10,13 +10,13 @@
 
 <AnchorPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scenes.UpdateBalanceController">
    <children>
-      <TextField fx:id = "Amount" layoutX="226.0" layoutY="84.0" promptText="Amount" />
-      <TextField fx:id = "Card" layoutX="226.0" layoutY="150.0" promptText="Card Number" />
-      <PasswordField fx:id = "PIN" layoutX="225.0" layoutY="201.0" promptText="PIN" />
+      <TextField fx:id="Amount" layoutX="226.0" layoutY="84.0" promptText="Amount" />
+      <TextField fx:id="Card" layoutX="226.0" layoutY="150.0" promptText="Card Number" />
+      <PasswordField fx:id="PIN" layoutX="225.0" layoutY="201.0" promptText="PIN" />
       <Button layoutX="245.0" layoutY="262.0" mnemonicParsing="false" onAction="#addBalance" prefHeight="39.0" prefWidth="110.0" text="Add to Wallet" />
-      <ImageView fx:id='backImage' fitHeight="18.0" fitWidth="23.0" layoutX="33.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backImage" fitHeight="18.0" fitWidth="23.0" layoutX="33.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../arrow.png" />
+            <Image url="@/scenes/img/arrow.png" />
          </image>
       </ImageView>
       <Label fx:id="msg" layoutX="225.0" layoutY="234.0" prefHeight="18.0" prefWidth="150.0" />

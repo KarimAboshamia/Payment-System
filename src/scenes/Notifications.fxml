@@ -19,7 +19,7 @@
       </Label>
       <ImageView fx:id="backImage" fitHeight="16.0" fitWidth="19.0" layoutX="28.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../arrow.png" />
+            <Image url="@/scenes/img/arrow.png" />
          </image>
       </ImageView>
       <GridPane fx:id="grid" hgap="12.0" layoutX="200.0" layoutY="81.0" vgap="15.0">

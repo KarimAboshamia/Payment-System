@@ -24,7 +24,7 @@
       <Button layoutX="273.0" layoutY="295.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
       <ImageView fx:id="backImage" fitHeight="18.0" fitWidth="28.0" layoutX="25.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../arrow.png" />
+            <Image url="@/scenes/img/arrow.png" />
          </image>
       </ImageView>
       <Label fx:id="result" layoutX="244.0" layoutY="264.0" prefHeight="18.0" prefWidth="111.0" />

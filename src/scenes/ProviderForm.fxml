@@ -28,7 +28,7 @@
       <Button layoutX="266.0" layoutY="599.0" mnemonicParsing="false" onAction="#submitForm" prefHeight="34.0" prefWidth="65.0" text="Submit" />
       <ImageView fx:id="backImage" fitHeight="16.0" fitWidth="18.0" layoutX="28.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../arrow.png" />
+            <Image url="@/scenes/img/arrow.png" />
          </image>
       </ImageView>
       <Label fx:id="transactionText" layoutX="262.0" layoutY="554.0" prefHeight="28.0" prefWidth="184.0" textAlignment="CENTER">

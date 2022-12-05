@@ -28,7 +28,7 @@
       </GridPane>
       <ImageView fx:id="backImage" fitHeight="18.0" fitWidth="47.0" layoutX="40.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../arrow.png" />
+            <Image url="@/scenes/img/arrow.png" />
          </image>
       </ImageView>
       <Label fx:id="displaymsg" layoutX="241.0" layoutY="291.0" prefHeight="18.0" prefWidth="135.0" />

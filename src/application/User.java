@@ -61,9 +61,8 @@ public class User extends AppUser{
 	
 	public String setBalance(String cardNumber, int pin, int balance) {
 		//call balance manager if credit card manager returned true
-		balanceManagerInterface = new CreditCardManager();
 		if(creditManager.checkCredit(cardNumber, pin)) {
-			balanceManagerInterface.setBalance(balance, this.getUsername());
+			walletBalance = creditManager.setBalance(balance, this.getUsername());
 			return "Successfully Charged";
 		}
 		return "Wrong card Number";
@@ -92,10 +91,5 @@ public class User extends AppUser{
 		
 	}
 	
-	public void checkDiscounts()
-	{
-		
-	}
-
 }
 
