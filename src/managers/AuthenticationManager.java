@@ -46,7 +46,6 @@ public class AuthenticationManager {//Manager
 	}
 	
 	public int signUp(String email, String username, String password, int permission) {
-		
 		ArrayList<String> signUpRes = authObj.signUp(email, username, password, permission);
 		if(signUpRes.get(0) != null) {
 			return 0;
