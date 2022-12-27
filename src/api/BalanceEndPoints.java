@@ -22,7 +22,11 @@ public class BalanceEndPoints {
 	public Map<String, String> updateBalance(@RequestParam String token,@RequestParam String card, @RequestParam int PIN, @RequestParam int newBalance){
 		System.out.println(token);
 		AppUser user = creation.createUser(token);
+		
 		HashMap<String, String> map = new HashMap<>();
+		if(user == null) {
+			map.put("Error:", "Wrong token");
+		}
 		if(user.getPermission().equals("1")) {
 			map.put("State", "Admin Doesn't have a balance");
 		} else {
