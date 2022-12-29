@@ -5,8 +5,13 @@
 1. Run it as Maven Project
 2. Download JavaFx from market place - Download JavaFX library from the following link: https://gluonhq.com/products/javafx/
 3. Add the FX library -  Window - Preferences - JavaFX - Path to the SDK
+4. Add JavaFX to buildpath
+5. Configure run configurations : --module-path "javafx-sdk-19\lib"  --add-modules javafx.controls,javafx.fxml   -> Replace between quotation with javafx library path
 4. Download sqlite jdbc using the following link https://search.maven.org/artifact/org.xerial/sqlite-jdbc
 5. Add jdbc to build path (If Needed)
+
+# Run
+Run main
 
 # Requirements 
 ## User
@@ -24,4 +29,3 @@ a. Overall discounts. For example the user should have 10% discount for the firs
 b. Specific discount.. For example the admin can apply 20% discount for all mobile recharge services.
 For any given service. All overall discounts and specific discounts for this service should apply.
 3. The admin should be able to list all refund requests. Each refund request should contain the related service and the amount to be refunded. The admin should be able to accept or reject any refund request and if any refund request got accepted a refund transaction should be processed.
-

@@ -32,7 +32,39 @@ public class DBConnection {
 	public static DBConnection getDB() {
 		return db;
 	}
+	/******************************/
+	public void addWalletTransaction(String username, int balance) {
+		String query = "insert into WalletTransaction (Username, Amount) values ('"+username+"','"+balance+")";
+		 
+	}
 	
+	public ResultSet getRefunds(String username)
+	{
+		String nquery = "SELECT RefundReq.Username, RefundReq.RefundID, Transactions.Service, Transactions.Amount FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE RefundReq.Username="+username+";";
+		
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(nquery);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public  ResultSet getWalletTransactions(String username) {
+		String query = "Select * from WalletTransaction where Username=" + "'"+username+"'";
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(query);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+		
+	}
+	
+	
+	/****************************/
 	public ResultSet checkLogin(String email) {
 		try {
 			String query = "select * from Users WHERE Email = '" + email + "'";
