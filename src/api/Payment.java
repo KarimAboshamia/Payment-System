@@ -31,9 +31,6 @@ public class Payment {
 	public Map<String, Provider> getProviders(@RequestParam String serviceName){
 		HashMap<String, Provider> map = new HashMap<>();
 	
-		//Create all system services, return all providers of the provided service
-		
-		
 		Service service = searchForService(serviceName);
 		if(service != null) {
 			for(int j = 0; j < service.getProviders().size(); j++) {
@@ -74,24 +71,29 @@ public class Payment {
 	
 	@PostMapping(value="/payForProvider")
 	@ResponseBody
-	public  Map<String, String> payForProvider(@RequestParam String token, @RequestParam String providerName, @RequestParam String serviceName, @RequestParam int paymentMethod, @RequestBody Map<String,String> inputFields){
+	public String payForProvider(@RequestParam String token, @RequestParam String providerName, @RequestParam String serviceName, @RequestParam String paymentMethod, @RequestBody Map<String,String> inputFields){
 		HashMap<String, String> map = new HashMap<>();
 		AppUser user = creation.createUser(token);
 		User normalUser = null;
 		if(user == null) {
-			map.put("Error:", "Wrong token");
+			String error = "Error: Wrong token";
+			return error;
 		}
 		if(user.getPermission().equals("0")) {
 			normalUser = (User)user;
 		} else {
-			map.put("State", "Admin can't pay for a provider.");
+			
+			String error = "State Admin can't pay for a provider.";
+			return error;
 		}
 		Service service = searchForService(serviceName);
 		if(service != null) {
 			for(int j = 0; j < service.getProviders().size(); j++) {
 				if(service.getProviders().get(j).getProviderName().toLowerCase().equals(providerName.toLowerCase())) {
 					int textSize = service.getProviders().get(j).getTextFieldData().size();
-					int dropSize = service.getProviders().get(j).getDropDownData().size();
+					if(service.getProviders().get(j).getDropDownData() != null) {
+						int dropSize = service.getProviders().get(j).getDropDownData().size();
+					}
 					HashMap<String,String> textFieldsInput = new HashMap<>();
 					HashMap<String,String> dropDownInput = new HashMap<>();
 					for(int i = 0; i < inputFields.size(); i++) {
@@ -104,12 +106,26 @@ public class Payment {
 							dropDownInput.put(key, value);
 						}
 					}
-					 service.getProviders().get(j).handleUserData(textFieldsInput, dropDownInput, normalUser, serviceName, paymentMethod);
+					
+					int paymentMapping = 0;
+					if(paymentMethod.equals("Credit")) {
+						paymentMapping = 2;
+					} else if (paymentMethod.equals("Wallet")){
+						paymentMapping = 0;
+						
+					} else if (paymentMethod.equals("Delivery")) {
+						paymentMapping = 1;
+						
+					} else {
+						String error = "Wrong Payment Method, Check Documentation for types";
+						return error;
+					}
+					return service.getProviders().get(j).handleUserData(textFieldsInput, dropDownInput, normalUser, serviceName, paymentMapping);
 				}
 			}
 		}
-		
 		return null;
+		
 	}
 
 	public Service searchForService(String serviceName) {

@@ -31,13 +31,14 @@ import scenes.ChangeScenes;
 public class Refund {
 	RefundManager manager = new RefundManager(); 
 	UserCreator creator = new UserCreator();
+	Set<String> set = new HashSet<String> (); 
 	@PostMapping(value="/requestRefund")
 	@ResponseBody
-	public String setRefundReq(@RequestParam String transactionID,@RequestParam String Token)
+	public String setRefundReq(@RequestParam String transactionID,@RequestParam String token)
 	{
 		String msg = null;
-		Set<String> set = new HashSet<String> (); 
-		User user = (User) creator.createUser(Token);
+		
+		User user = (User) creator.createUser(token);
 		try {
 			if(set.contains(transactionID)) {
 				msg= "Request Already Sent";							
@@ -54,10 +55,10 @@ public class Refund {
 	
 	@GetMapping(value="/viewRefundsList")
 	@ResponseBody
-	public  HashMap<String, Map<String,String>> reviewRefunds(@RequestParam String Token) throws SQLException
+	public  HashMap<String, Map<String,String>> reviewRefunds(@RequestParam String token) throws SQLException
 	{
 		HashMap<String, Map<String,String>> map= new HashMap<>();
-		Admin user = (Admin) creator.createUser(Token);
+		Admin user = (Admin) creator.createUser(token);
 		if(user.getPermission().equals("1"))
 		{
 			RefundManager obj=new RefundManager();
@@ -92,30 +93,30 @@ public class Refund {
 	
 	@PostMapping(value="/changeRefundState")
 	@ResponseBody
-	public String changestate(@RequestParam String refundID,@RequestParam  String Token, String state)
+	public String changestate(@RequestParam String refundID,@RequestParam  String token, String state)
 	{
-		Admin user = (Admin) creator.createUser(Token);
+		Admin user = (Admin) creator.createUser(token);
 		String r;
 		if(user.getPermission().equals("1"))
 		{
 			if(state=="accept")
 			{
 				try {
-							user.changeState("1", refundID);
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-				r="Request Accepted";
+					user.changeState("1", refundID);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				r="Refund Accepted";
 			}
 			else
 			{
 								
-						try {
-							user.changeState("-1", refundID);
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}				
-				r="Request Rejected";		
+				try {
+					user.changeState("-1", refundID);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+				r="Refund Rejected";		
 			}	
 			return r;
 		}
