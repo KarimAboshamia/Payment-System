@@ -43,6 +43,7 @@ public class Test {
 		
 		//Test notifications
 		AuthenticationManager auth = new AuthenticationManager();
+		//auth.signUp("Admin, username, password, permission)
 		AppUser user = 	auth.login("Ahmed@gmail.com", "sasuke");
 		User mainuser = (User) user;
 		Observable notificationsObservable = new NotificationsObservable();

@@ -3,7 +3,9 @@ package api;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import application.Admin;
 import application.User;
 import communication.DataCommunicator;
-//import db.DBConnection;
+import db.DBConnection;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -29,14 +31,15 @@ import scenes.ChangeScenes;
 public class Refund {
 	RefundManager manager = new RefundManager(); 
 	UserCreator creator = new UserCreator();
-	Set<String> set = new HashSet<String> (); 
+	Set<String> set = new HashSet<String> ();
+	
 	@PostMapping(value="/requestRefund")
 	@ResponseBody
-	public String setRefundReq(@RequestParam String transactionID,@RequestParam String Token)
+	public String setRefundReq(@RequestParam String transactionID,@RequestParam String token)
 	{
 		String msg = null;
 		
-		User user = (User) creator.createUser(Token);
+		User user = (User) creator.createUser(token);
 		try {
 			if(set.contains(transactionID)) {
 				msg= "Request Already Sent";							
@@ -50,45 +53,78 @@ public class Refund {
 		}
 		return msg;
 	}
-	/*public String reviewRefunds (@RequestParam String Token) throws IOException, SQLException
+	
+	@GetMapping(value="/viewRefundsList")
+	@ResponseBody
+	public  HashMap<String, Map<String,String>> reviewRefunds(@RequestParam String token) throws SQLException
 	{
-		Admin admin;
-		DataCommunicator communicator = DataCommunicator.getCommunicator();
-		admin = (Admin) communicator.getUser();
-		DBConnection db = null;
-		User user = (User) creator.createUser(Token);
-		ResultSet res = db.getTransactions(user.getUsername());
-		int counter = 0;
-		String r = null;
-		while(res.next()) {
+		HashMap<String, Map<String,String>> map= new HashMap<>();
+		Admin user = (Admin) creator.createUser(token);
+		if(user.getPermission().equals("1"))
+		{
+			RefundManager obj=new RefundManager();
+			ResultSet res = obj.getRef();
+			int cnt=0;
+			while(res.next()) 
+			{
+				Map<String,String>m=new HashMap<>();
+				cnt++;
+				m.put("ID", res.getString("RefundID"));
+				m.put("Service", res.getString("Service"));
+				m.put("Amount", res.getString("Amount"));
+				map.put("service"+cnt, m);
+			}
+			if(cnt>0)
+			{
+				return map;
+			}
+			else
+			{
+				map.put("No refund requests found", null);
+				return map;
+			}
+		}
+		else
+		{
+			map.put("User cannot view the refund list", null);
+			return map;
+		}
+		
+	}
+	
+	@PostMapping(value="/changeRefundState")
+	@ResponseBody
+	public String changestate(@RequestParam String refundID,@RequestParam  String token, String state)
+	{
+		Admin user = (Admin) creator.createUser(token);
+		String r;
+		if(user.getPermission().equals("1"))
+		{
 			if(state=="accept")
 			{
 				try {
-							admin.changeState("1", refundId);
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-				r="Request Accepted";
+					user.changeState("1", refundID);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				r="Refund Accepted";
 			}
 			else
 			{
 								
-						try {
-							admin.changeState("-1", refundId);
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}				
-				r="Request Rejected";		
-			}		
-				counter++;
-		}
-		
-		if(counter == 0) {
-			return "No refund requests";
+				try {
+					user.changeState("-1", refundID);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+				r="Refund Rejected";		
+			}	
+			return r;
 		}
 		else
 		{
-			return r;
+			return "User Cannot modify the refund state";
 		}
-	}*/
+	}
+
 	}

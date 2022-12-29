@@ -2,6 +2,8 @@ package managers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import application.User;
 import models.RefundTransactionModel;
@@ -14,8 +16,12 @@ public abstract class BalanceManagerInterface {
     TransactionModel balanceObject = TransactionModel.getDB();
     
     public int setBalance(int balance, String username) {
+
         balance += Integer.parseInt(userObject.getBalance(username));
         userObject.setBalance(balance, username);
+        
+        //TODO Add "Add to wallet transaction"
+        balanceObject.addWalletTransaction(username, balance);
         return balance;
         
     }
@@ -25,7 +31,7 @@ public abstract class BalanceManagerInterface {
     }
     
 
-    public boolean checkCredit(String cardNumber, int pin) {
+    public boolean checkCreditCardDetails(String cardNumber, int pin) {
         if(cardNumber.length() == 16) {
             return true;
         }
@@ -49,4 +55,54 @@ public abstract class BalanceManagerInterface {
     public ResultSet getTransactions(String username) throws SQLException {
     	return balanceObject.getTransactions(username);
     }
+    
+    /***************************/
+    public Map<String, Map<String, String>> getSystemTransactions(String username) throws SQLException {
+    	Map<String, Map<String, String>> systemData = new HashMap<>();
+    	ResultSet transactions = balanceObject.getTransactions(username);
+    	int counter = 1;
+    	if(transactions != null) {
+	    	while(transactions.next()) {
+	    		Map<String, String> data = new HashMap<>();
+	    		data.put("Transaction ID: " , transactions.getString("TransactionID"));
+	    		data.put("Service: " , transactions.getString("Service"));
+	    		data.put("Amount: " , transactions.getString("Amount"));
+	
+	    		systemData.put("Payment transaction: " + counter, data);
+	    		counter++;
+	    		
+	    	}
+    	}
+
+		ResultSet refundTrans = balanceObject.getRefunds(username);
+    	if(refundTrans != null) {
+			while(refundTrans.next()) {
+				Map<String, String> data = new HashMap<>();
+				data.put("Refund ID: " , refundTrans.getString("RefundID"));
+				data.put("State: " , refundTrans.getString("State"));
+				data.put("Transaction ID: " , refundTrans.getString("TransactionID"));
+			
+				systemData.put("Refund transaction: " + counter, data);
+				counter++;
+				
+			}
+    	}
+    	
+    	
+    	ResultSet walletTrans = balanceObject.getWalletTransactions(username);
+    	if(walletTrans != null) {
+	    	while(walletTrans.next()) {
+	    		Map<String, String> data = new HashMap<>();
+	    		data.put("Credit ID: " , walletTrans.getString("ID"));
+	    		data.put("Amount: " , refundTrans.getString("Amount"));
+	
+	    		systemData.put("Add to Wallet transaction: " + counter, data);
+	    		counter++;
+	    		
+	    	}
+    	}
+        return systemData;
+
+    }    
+    /*************************/
 }
