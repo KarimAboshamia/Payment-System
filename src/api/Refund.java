@@ -31,7 +31,8 @@ import scenes.ChangeScenes;
 public class Refund {
 	RefundManager manager = new RefundManager(); 
 	UserCreator creator = new UserCreator();
-	Set<String> set = new HashSet<String> (); 
+	Set<String> set = new HashSet<String> ();
+	
 	@PostMapping(value="/requestRefund")
 	@ResponseBody
 	public String setRefundReq(@RequestParam String transactionID,@RequestParam String token)

@@ -2,6 +2,8 @@ package managers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import application.User;
 import db.DBConnection;
@@ -50,10 +52,52 @@ public abstract class BalanceManagerInterface {
     }
     
     /***************************/
-    public void getSystemTransactions(String username) throws SQLException {
-    	balanceObject.getTransactions(username);
-    	balanceObject.getRefunds(username);
-    	balanceObject.getWalletTransactions(username);
-    }
+    public Map<String, Map<String, String>> getSystemTransactions(String username) throws SQLException {
+    	Map<String, Map<String, String>> systemData = new HashMap<>();
+    	ResultSet transactions = balanceObject.getTransactions(username);
+    	int counter = 1;
+    	if(transactions != null) {
+	    	while(transactions.next()) {
+	    		Map<String, String> data = new HashMap<>();
+	    		data.put("Transaction ID: " , transactions.getString("TransactionID"));
+	    		data.put("Service: " , transactions.getString("Service"));
+	    		data.put("Amount: " , transactions.getString("Amount"));
+	
+	    		systemData.put("Payment transaction: " + counter, data);
+	    		counter++;
+	    		
+	    	}
+    	}
+
+		ResultSet refundTrans = balanceObject.getRefunds(username);
+    	if(refundTrans != null) {
+			while(refundTrans.next()) {
+				Map<String, String> data = new HashMap<>();
+				data.put("Refund ID: " , refundTrans.getString("RefundID"));
+				data.put("State: " , refundTrans.getString("State"));
+				data.put("Transaction ID: " , refundTrans.getString("TransactionID"));
+			
+				systemData.put("Refund transaction: " + counter, data);
+				counter++;
+				
+			}
+    	}
+    	
+    	
+    	ResultSet walletTrans = balanceObject.getWalletTransactions(username);
+    	if(walletTrans != null) {
+	    	while(walletTrans.next()) {
+	    		Map<String, String> data = new HashMap<>();
+	    		data.put("Credit ID: " , walletTrans.getString("ID"));
+	    		data.put("Amount: " , refundTrans.getString("Amount"));
+	
+	    		systemData.put("Add to Wallet transaction: " + counter, data);
+	    		counter++;
+	    		
+	    	}
+    	}
+        return systemData;
+
+    }    
     /*************************/
 }

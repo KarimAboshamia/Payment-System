@@ -33,6 +33,17 @@ public class DBConnection {
 		return db;
 	}
 	/******************************/
+	public ResultSet getSystemUsers() {
+		String query = "Select * from Users where Permission=" + "'" + 0 + "'";
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(query);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
 	public void addWalletTransaction(String username, int balance) {
 		String query = "insert into WalletTransaction (Username, Amount) values ('"+username+"','"+balance+")";
 		 
@@ -40,7 +51,7 @@ public class DBConnection {
 	
 	public ResultSet getRefunds(String username)
 	{
-		String nquery = "SELECT RefundReq.Username, RefundReq.RefundID, Transactions.Service, Transactions.Amount FROM Transactions INNER JOIN RefundReq ON Transactions.TransactionID=RefundReq.TransactionID WHERE RefundReq.Username="+username+";";
+		String nquery = "SELECT * from RefundReq where Username=" + "'" + username + "'";
 		
 		ResultSet res = null;
 		try {
