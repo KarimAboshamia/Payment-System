@@ -12,7 +12,7 @@ public class UserCreator {
 	public AppUser createUser(String token) {
 
 		String[] splitArray = token.split(",");
-		AppUser user;
+		AppUser user = null;
 		if(splitArray[2].equals("1")) {
 			 user = new Admin(splitArray[0], splitArray[3], splitArray[1], splitArray[2]);
 		} else {

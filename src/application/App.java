@@ -7,13 +7,16 @@ import org.springframework.context.annotation.ComponentScan;
 import api.Authentication;
 import api.BalanceEndPoints;
 import api.*;
-import managers.AuthenticationManager;
 
 @ComponentScan(basePackageClasses = Authentication.class)
 @ComponentScan(basePackageClasses = BalanceEndPoints.class)
+
 @ComponentScan(basePackageClasses = SearchServices.class)
 @ComponentScan(basePackageClasses = ServiceDiscount.class)
 @ComponentScan(basePackageClasses = Refund.class)
+@ComponentScan(basePackageClasses = DiscountEndPoint.class)
+@ComponentScan(basePackageClasses = Payment.class)
+@ComponentScan(basePackageClasses = TransactionsEndPoint.class)
 
 
 @SpringBootApplication
