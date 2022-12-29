@@ -4,20 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.User;
-import db.DBConnection;
+import models.RefundTransactionModel;
+import models.TransactionModel;
+import models.UserModel;
 
 public abstract class BalanceManagerInterface {
     
-    DBConnection balanceObject = DBConnection.getDB();
+    UserModel userObject = UserModel.getDB();
+    TransactionModel balanceObject = TransactionModel.getDB();
+    
     public int setBalance(int balance, String username) {
-        balance += Integer.parseInt(balanceObject.getBalance(username));
-        balanceObject.setBalance(balance, username);
+        balance += Integer.parseInt(userObject.getBalance(username));
+        userObject.setBalance(balance, username);
         return balance;
         
     }
     
     public int getBalance(String username) {
-        return Integer.parseInt(balanceObject.getBalance(username));
+        return Integer.parseInt(userObject.getBalance(username));
     }
     
 

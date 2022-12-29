@@ -3,15 +3,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.User;
-import db.*;
 import discount.Discount;
 import discount.ServiceDiscount;
+import models.*;
 
 public class ServiceDiscountManager {
-	DBConnection dbobj = DBConnection.getDB();
+	TransDiscountModel transDiscObject = TransDiscountModel.getDB();
+	ServiceDiscountModel serviceDiscObj = ServiceDiscountModel.getDB();
 	public Discount calcDiscount(Discount discount, String name) throws SQLException
 	{
-		ResultSet overall= dbobj.calcServiceDiscount();
+		ResultSet overall= serviceDiscObj.calcServiceDiscount();
 		while(overall.next())
 		{
 			System.out.println(overall.getString("Service"));
@@ -24,10 +25,10 @@ public class ServiceDiscountManager {
 	}
 	
 	public void setTransDiscount(float ratio) {
-		dbobj.setTransactionDiscount(ratio);
+		transDiscObject.setTransactionDiscount(ratio);
 	}
 	
 	public void setServiceDiscount(float ratio, String name) {
-		dbobj.setServiceDiscount(ratio, name);
+		serviceDiscObj.setServiceDiscount(ratio, name);
 	}
 }

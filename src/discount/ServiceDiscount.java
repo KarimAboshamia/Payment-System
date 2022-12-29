@@ -14,4 +14,5 @@ public class ServiceDiscount extends DiscountDec {
 	public float getDiscount() {
 		return discountRatio;
 	}
+	
 }

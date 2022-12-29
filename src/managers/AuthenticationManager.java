@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import application.Admin;
 import application.AppUser;
 import application.User;
-import db.DBConnection;
+import models.RefundTransactionModel;
+import models.UserModel;
 
 public class AuthenticationManager {//Manager
-	private DBConnection authObj = DBConnection.getDB();
+	private UserModel authObj = UserModel.getDB();
 	
 	public AppUser login(String email, String password) {
 		//Query database with name and hashed password

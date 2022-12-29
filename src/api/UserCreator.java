@@ -20,5 +20,16 @@ public class UserCreator {
 		}
 		return user;
 	}
+/*
+	public User createUser(String token) {
 
+		String[] splitArray = token.split(",");
+		AppUser user;
+		if(splitArray[2].equals("1")) {
+			 user = new Admin(splitArray[0], splitArray[3], splitArray[1], splitArray[2]);
+		} else {
+			 user = new User(splitArray[0], splitArray[3], splitArray[1], splitArray[2], Integer.parseInt(splitArray[4]));	
+		}
+		return user;
+	}*/
 }

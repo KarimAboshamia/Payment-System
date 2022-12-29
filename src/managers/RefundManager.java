@@ -3,18 +3,25 @@ package managers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import db.DBConnection;
+import models.RefundTransactionModel;
+import models.RefundModel;
+import models.TransactionModel;
+import models.UserModel;
 
 public class RefundManager {
-	private DBConnection newdb = DBConnection.getDB();
+	private RefundModel refundObject = RefundModel.getDB();
+	TransactionModel transObject = TransactionModel.getDB();
+	UserModel userObject = UserModel.getDB();
+	RefundTransactionModel db = RefundTransactionModel.getDB();
+
 	public void handleRefund (String usrname, String transId ) throws SQLException
 	{ 
-		newdb.insertRefund(usrname, transId);
+		refundObject.insertRefund(usrname, transId);
 	}
 	
 	public ResultSet getRef()
 	{
-		ResultSet res= newdb.getRefunds();
+		ResultSet res= db.getRefunds();
 		return res;
 
 	}
@@ -23,19 +30,19 @@ public class RefundManager {
 		
 		//if new state is 1
 		if(newState.equals("1")) {
-			ResultSet res = newdb.getRelatedTransaction(refundID);
+			ResultSet res = transObject.getRelatedTransaction(refundID);
 			String amount = res.getString("Amount");
 			String name = res.getString("Username");
 			String transID = res.getString("TransactionID");
-			String wallet = newdb.getBalance(name);
+			String wallet = userObject.getBalance(name);
 			
 			float newBalance = Float.parseFloat(wallet) + Float.parseFloat(amount);
-			newdb.setBalance((int) newBalance, name);
+			userObject.setBalance((int) newBalance, name);
 			
-			newdb.removeTransaction(transID);
+			transObject.removeTransaction(transID);
 			
 		}
-		newdb.updateState(newState, refundID);
+		refundObject.updateState(newState, refundID);
 		
 	}
 	
