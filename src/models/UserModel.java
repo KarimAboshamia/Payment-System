@@ -10,28 +10,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class UserModel {
-
-	private Connection connection;
-	private static UserModel db = new UserModel();
 	private Statement statement;
 	
 
-	private UserModel() {
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
-			statement = connection.createStatement();
-
-		}catch(SQLException e) {
-	        System.out.println(e);
-	
-				
-		}
+	public UserModel(Statement statement) {
+		this.statement = statement;
 	}
-	
-	public static UserModel getDB() {
-		return db;
-	}
-	
 
 	public ResultSet checkLogin(String email) {
 		try {
@@ -114,6 +98,17 @@ public class UserModel {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public ResultSet getSystemUsers() {
+		String query = "Select * from Users where Permission=" + "'" + 0 + "'";
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(query);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

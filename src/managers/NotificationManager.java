@@ -2,11 +2,14 @@ package managers;
 
 import java.sql.ResultSet;
 
+import db.DBConnection;
 import models.RefundTransactionModel;
 import models.RefundModel;
 
 public class NotificationManager {
-	RefundModel refundObject =  RefundModel.getDB();
+	private DBConnection connection = DBConnection.getDB();
+
+	RefundModel refundObject =  new RefundModel(connection.getDBConnection());
 	//Set changed to 0 if user marked as read functionRead()
 	public void markRead(String refundID) {
 		refundObject.setChangedRefundColumn(refundID);

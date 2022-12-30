@@ -7,27 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RefundModel {
-
-	private Connection connection;
-	private static RefundModel db = new RefundModel();
 	private Statement statement;
 	
 
-	private RefundModel() {
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
-			statement = connection.createStatement();
+	public RefundModel(Statement statement) {
+		this.statement = statement;
+		
+	}
+	
 
-		}catch(SQLException e) {
-	        System.out.println(e);
-	
-				
-		}
-	}
-	
-	public static RefundModel getDB() {
-		return db;
-	}
 
 	public void insertRefund(String usrname, String transId)
 	{

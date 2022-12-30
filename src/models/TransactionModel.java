@@ -7,27 +7,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class TransactionModel {
-
-	private Connection connection;
-	private static TransactionModel db = new TransactionModel();
 	private Statement statement;
 	
 
-	private TransactionModel() {
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
-			statement = connection.createStatement();
-
-		}catch(SQLException e) {
-	        System.out.println(e);
-	
-				
-		}
+	public TransactionModel(Statement statement) {
+		this.statement = statement;
 	}
 	
-	public static TransactionModel getDB() {
-		return db;
-	}
 	public void insertTransaction(String userName, float amount, String serviceName) {
 		String newQuery= "insert into Transactions (Username, Amount, Service) values ('"+userName+"', '" + amount + "', '" + serviceName + "')";
 		try {
@@ -70,5 +56,35 @@ public class TransactionModel {
 		String query = "select * from Transactions Where Username = '" + user + "'";
 		ResultSet result = statement.executeQuery(query);
 		return result;
+	}
+	
+	public void addWalletTransaction(String username, int balance) {
+		String query = "insert into WalletTransaction (Username, Amount) values ('"+username+"','"+balance+")";
+		 
+	}
+	
+	public ResultSet getRefunds(String username)
+	{
+		String nquery = "SELECT * from RefundReq where Username=" + "'" + username + "'";
+		
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(nquery);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public  ResultSet getWalletTransactions(String username) {
+		String query = "Select * from WalletTransaction where Username=" + "'"+username+"'";
+		ResultSet res = null;
+		try {
+			res = statement.executeQuery(query);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+		
 	}
 }

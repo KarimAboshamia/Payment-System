@@ -8,26 +8,14 @@ import java.sql.Statement;
 
 public class TransDiscountModel {
 
-	private Connection connection;
-	private static TransDiscountModel db = new TransDiscountModel();
 	private Statement statement;
 	
 
-	private TransDiscountModel() {
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
-			statement = connection.createStatement();
+	public TransDiscountModel(Statement statement) {
+		this.statement = statement;
 
-		}catch(SQLException e) {
-	        System.out.println(e);
-	
-				
-		}
 	}
 	
-	public static TransDiscountModel getDB() {
-		return db;
-	}
 
 	public ResultSet calcTransactionDiscount() throws SQLException
 	{

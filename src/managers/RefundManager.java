@@ -3,16 +3,19 @@ package managers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import db.DBConnection;
 import models.RefundTransactionModel;
 import models.RefundModel;
 import models.TransactionModel;
 import models.UserModel;
 
 public class RefundManager {
-	private RefundModel refundObject = RefundModel.getDB();
-	TransactionModel transObject = TransactionModel.getDB();
-	UserModel userObject = UserModel.getDB();
-	RefundTransactionModel db = RefundTransactionModel.getDB();
+	private DBConnection connection = DBConnection.getDB();
+
+	private RefundModel refundObject = new RefundModel(connection.getDBConnection());
+	TransactionModel transObject = new TransactionModel(connection.getDBConnection());
+	UserModel userObject = new UserModel(connection.getDBConnection());
+	RefundTransactionModel db = new RefundTransactionModel(connection.getDBConnection());
 
 	public void handleRefund (String usrname, String transId ) throws SQLException
 	{ 

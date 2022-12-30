@@ -7,27 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ServiceDiscountModel {
-
-	private Connection connection;
-	private static ServiceDiscountModel db = new ServiceDiscountModel();
 	private Statement statement;
 	
 
-	private ServiceDiscountModel() {
-		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:db.db");
-			statement = connection.createStatement();
+	public ServiceDiscountModel(Statement statement) {
+		this.statement = statement;
+	}
+	
 
-		}catch(SQLException e) {
-	        System.out.println(e);
-	
-				
-		}
-	}
-	
-	public static ServiceDiscountModel getDB() {
-		return db;
-	}
 
 	public ResultSet calcServiceDiscount() throws SQLException
 	{

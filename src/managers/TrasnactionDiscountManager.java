@@ -6,11 +6,14 @@ import models.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import application.User;
+import db.DBConnection;
 public class TrasnactionDiscountManager {
-	RefundTransactionModel obj = RefundTransactionModel.getDB();
-	TransDiscountModel transDiscObject = TransDiscountModel.getDB();
+	private DBConnection connection = DBConnection.getDB();
 
-	TransactionModel transObject = TransactionModel.getDB();
+	RefundTransactionModel obj = new RefundTransactionModel(connection.getDBConnection());
+	TransDiscountModel transDiscObject = new TransDiscountModel(connection.getDBConnection());
+	TransactionModel transObject = new TransactionModel(connection.getDBConnection());
+	
 	public Discount calcDiscount(Discount discount ,User user) throws SQLException
 	{
 		ResultSet userTrans = transObject.getTransactions(user.getUsername());

@@ -6,14 +6,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.User;
+import db.DBConnection;
 import models.RefundTransactionModel;
 import models.TransactionModel;
 import models.UserModel;
 
 public abstract class BalanceManagerInterface {
-    
-    UserModel userObject = UserModel.getDB();
-    TransactionModel balanceObject = TransactionModel.getDB();
+	private DBConnection connection = DBConnection.getDB();
+
+    UserModel userObject = new UserModel(connection.getDBConnection());
+    TransactionModel balanceObject = new TransactionModel(connection.getDBConnection());
     
     public int setBalance(int balance, String username) {
 

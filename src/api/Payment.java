@@ -1,5 +1,6 @@
 package api;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import application.Admin;
 import application.AppUser;
 import application.User;
+import discount.Discount;
+import discount.DiscountScenario;
+import discount.OverDiscount;
 import managers.ServiceManager;
 import providers.Provider;
 import services.Service;
@@ -71,7 +75,7 @@ public class Payment {
 	
 	@PostMapping(value="/payForProvider")
 	@ResponseBody
-	public String payForProvider(@RequestParam String token, @RequestParam String providerName, @RequestParam String serviceName, @RequestParam String paymentMethod, @RequestBody Map<String,String> inputFields){
+	public String payForProvider(@RequestParam String token, @RequestParam String providerName, @RequestParam String serviceName, @RequestParam String paymentMethod, @RequestBody Map<String,String> inputFields, @RequestParam String activateDiscount) throws SQLException{
 		HashMap<String, String> map = new HashMap<>();
 		AppUser user = creation.createUser(token);
 		User normalUser = null;
@@ -86,6 +90,16 @@ public class Payment {
 			String error = "State Admin can't pay for a provider.";
 			return error;
 		}
+		
+		float overAllDiscount =  0.0f;
+		if(activateDiscount.toLowerCase().equals("yes")) {
+			Discount manager = new OverDiscount();
+			DiscountScenario discountCalcObj = new DiscountScenario();
+			discountCalcObj.calcOverallDiscount(manager, normalUser, serviceName);
+			overAllDiscount = manager.getDiscount();
+			
+		}
+		
 		Service service = searchForService(serviceName);
 		if(service != null) {
 			for(int j = 0; j < service.getProviders().size(); j++) {
@@ -99,6 +113,10 @@ public class Payment {
 					for(int i = 0; i < inputFields.size(); i++) {
 						String key = (String) inputFields.keySet().toArray()[i];
 						String value = (String) inputFields.values().toArray()[i];
+						if(key.equals("Amount")) {
+							value = Float.toString(Integer.parseInt(value) * (1 - (overAllDiscount/100)) );
+							
+						}
 						if(i < service.getProviders().get(j).getTextFieldData().size()) {
 							textFieldsInput.put(key, value);
 							

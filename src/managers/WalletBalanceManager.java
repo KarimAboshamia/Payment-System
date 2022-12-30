@@ -1,11 +1,14 @@
 package managers;
 
 import application.User;
+import db.DBConnection;
 import models.UserModel;
 
 public class WalletBalanceManager extends BalanceManagerInterface {
+	private DBConnection connection = DBConnection.getDB();
+
 	
-    UserModel userObject = UserModel.getDB();
+    UserModel userObject = new UserModel(connection.getDBConnection());
 
     @Override
     public String consumeMoney(User  user, float amount, String cardNumber, int pin, String serviceName) {

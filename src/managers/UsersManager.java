@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import db.DBConnection;
+import models.UserModel;
 
 public class UsersManager {
-	private DBConnection usersObj = DBConnection.getDB();
+	private DBConnection connection = DBConnection.getDB();
+	UserModel usersObj = new UserModel(connection.getDBConnection());
 	
 	public Map<String, Map<String, String>> getSystemUsers() throws SQLException {
 		Map<String, Map<String, String>> systemData = new HashMap<>();

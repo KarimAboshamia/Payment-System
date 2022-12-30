@@ -3,13 +3,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import application.User;
+import db.DBConnection;
 import discount.Discount;
 import discount.ServiceDiscount;
 import models.*;
 
 public class ServiceDiscountManager {
-	TransDiscountModel transDiscObject = TransDiscountModel.getDB();
-	ServiceDiscountModel serviceDiscObj = ServiceDiscountModel.getDB();
+	private DBConnection connection = DBConnection.getDB();
+
+	TransDiscountModel transDiscObject = new TransDiscountModel(connection.getDBConnection());
+	ServiceDiscountModel serviceDiscObj = new ServiceDiscountModel(connection.getDBConnection());
 	public Discount calcDiscount(Discount discount, String name) throws SQLException
 	{
 		ResultSet overall= serviceDiscObj.calcServiceDiscount();
