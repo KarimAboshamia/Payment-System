@@ -1,9 +1,12 @@
 # Payment_System
 ## A mock-up for payment systems like Fawry
 
-# Installation
-1. Run it as Maven Project
-2. Download JavaFx from market place - Download JavaFX library from the following link: https://gluonhq.com/products/javafx/
+# Running API WEB SERVICES
+1. Import Project as Maven
+2. Build the project
+
+# Installation Of GUI
+1. Download JavaFx from market place - Download JavaFX library from the following link: https://gluonhq.com/products/javafx/
 3. Add the FX library -  Window - Preferences - JavaFX - Path to the SDK
 4. Add JavaFX to buildpath
 5. Configure run configurations : --module-path "javafx-sdk-19\lib"  --add-modules javafx.controls,javafx.fxml   -> Replace between quotation with javafx library path
