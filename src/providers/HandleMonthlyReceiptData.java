@@ -4,7 +4,7 @@ import java.util.*;
 
 import application.User;
 
-public class HandleMonthlyReceiptData implements HandleData{
+public class HandleMonthlyReceiptData extends HandleData{
 	String landLine;
 	float amount;
 	String city;

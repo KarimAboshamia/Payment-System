@@ -4,7 +4,7 @@ import java.util.*;
 
 import application.User;
 
-public class HandleNPOData implements HandleData {
+public class HandleNPOData extends HandleData {
 
 	float amount;
 	String city;
