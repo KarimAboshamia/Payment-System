@@ -79,6 +79,7 @@ public class Payment {
 		HashMap<String, String> map = new HashMap<>();
 		AppUser user = creation.createUser(token);
 		User normalUser = null;
+		boolean addDiscount = false;
 		if(user == null) {
 			String error = "Error: Wrong token";
 			return error;
@@ -91,15 +92,8 @@ public class Payment {
 			return error;
 		}
 		
-		float overAllDiscount =  0.0f;
-		if(activateDiscount.toLowerCase().equals("yes")) {
-			Discount manager = new OverDiscount();
-			DiscountScenario discountCalcObj = new DiscountScenario();
-			discountCalcObj.calcOverallDiscount(manager, normalUser, serviceName);
-			overAllDiscount = manager.getDiscount();
-			
-		}
-		
+		if(activateDiscount.toLowerCase().equals("yes")) addDiscount = true;
+
 		Service service = searchForService(serviceName);
 		if(service != null) {
 			for(int j = 0; j < service.getProviders().size(); j++) {
@@ -113,16 +107,10 @@ public class Payment {
 					for(int i = 0; i < inputFields.size(); i++) {
 						String key = (String) inputFields.keySet().toArray()[i];
 						String value = (String) inputFields.values().toArray()[i];
-						if(key.equals("Amount")) {
-							value = Float.toString(Integer.parseInt(value) * (1 - (overAllDiscount/100)) );
-							
-						}
-						if(i < service.getProviders().get(j).getTextFieldData().size()) {
-							textFieldsInput.put(key, value);
-							
-						} else {
-							dropDownInput.put(key, value);
-						}
+						
+						if(i < service.getProviders().get(j).getTextFieldData().size()) textFieldsInput.put(key, value);
+						else dropDownInput.put(key, value);
+						
 					}
 					
 					int paymentMapping = 0;
@@ -138,7 +126,7 @@ public class Payment {
 						String error = "Wrong Payment Method, Check Documentation for types";
 						return error;
 					}
-					return service.getProviders().get(j).handleUserData(textFieldsInput, dropDownInput, normalUser, serviceName, paymentMapping);
+					return service.getProviders().get(j).handleUserData(textFieldsInput, dropDownInput, normalUser, serviceName, paymentMapping, addDiscount);
 				}
 			}
 		}

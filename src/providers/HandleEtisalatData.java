@@ -4,7 +4,7 @@ import java.util.*;
 
 import application.User;
 
-public class HandleEtisalatData implements HandleData{
+public class HandleEtisalatData extends HandleData{
 	String phoneNumber;
 	float amount;
 	String cardNumber = "";

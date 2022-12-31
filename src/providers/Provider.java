@@ -1,5 +1,6 @@
 package providers;
 
+import java.sql.SQLException;
 import java.util.*;
 import application.User;
 
@@ -38,10 +39,18 @@ public abstract class Provider {
 	}
 	
 
-	public String handleUserData(Map<String,String> textFieldsInput, Map<String, String>dropDownInput, User user, String serviceName, int paymentMethod) {
+	public String handleUserData(Map<String,String> textFieldsInput, Map<String, String>dropDownInput, User user, String serviceName, int paymentMethod, boolean addDiscount) throws SQLException {
 		
 		//Create transaction with the username and service details 
-		//Takes users replies on the form and handle it 
+		//Takes users replies on the form and handle it
+		if(addDiscount) {
+			Float overAllDiscount = handleData.calcDiscount(user, serviceName);
+			
+			Float  amount = Float.parseFloat((textFieldsInput.get("Amount")));
+			amount = amount * (1 - (overAllDiscount/100)) ;
+			textFieldsInput.put("Amount", Float.toString(amount));
+		}
+		
 		return handleData.handleUserData(textFieldsInput, dropDownInput, user, serviceName, paymentMethod);
 	}
 }

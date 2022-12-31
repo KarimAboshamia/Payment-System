@@ -4,7 +4,7 @@ import java.util.*;
 
 import application.User;
 
-public class HandleCancerDonationData implements HandleData {
+public class HandleCancerDonationData extends HandleData {
 
 	String donationName;
 	float amount;

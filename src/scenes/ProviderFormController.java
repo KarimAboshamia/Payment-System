@@ -51,6 +51,7 @@ public class ProviderFormController {
 	int paymentMethod;
 	String cardNumber;
 	int pin;
+	boolean addDiscount = false;
 	
 	@FXML
 	GridPane grid;
@@ -163,6 +164,7 @@ public class ProviderFormController {
 			
 			try {
 				s = discountCalcObj.calcOverallDiscount(new OverDiscount(), user, service.getName());
+				addDiscount = true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -183,15 +185,15 @@ public class ProviderFormController {
 	}
 	
 	@FXML
-	public void submitForm(ActionEvent event) {
+	public void submitForm(ActionEvent event) throws SQLException {
 		
 		for(Node node : anchorPane.getChildren()) {
 			if(node instanceof GridPane) {
 				for(Node node2 : ((GridPane) node).getChildren()) {
 					if(node2 instanceof TextField) {
 						if(((TextField)node2).getPromptText().equals("Amount")) {
-							String balanceAfterOffer = Float.toString( Integer.parseInt(((TextField)node2).getText()) * (1 - (s.getDiscount()/100)) );
-							textFieldInput.put(((TextField)node2).getPromptText(), balanceAfterOffer);	
+							String balanceBeforeOffer = ((TextField)node2).getText();
+							textFieldInput.put(((TextField)node2).getPromptText(), balanceBeforeOffer);	
 						} else {
 							textFieldInput.put(((TextField)node2).getPromptText(), ((TextField)node2).getText());	
 						}
@@ -211,7 +213,7 @@ public class ProviderFormController {
 			
 		}
 		
-		transactionText.setText(provider.handleUserData(textFieldInput, dropDownInput, user, service.getName(), paymentMethod));
+		transactionText.setText(provider.handleUserData(textFieldInput, dropDownInput, user, service.getName(), paymentMethod, addDiscount));
 		
 		//User balance should be updated 
 		
