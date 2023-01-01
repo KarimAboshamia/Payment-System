@@ -35,11 +35,14 @@ public class Refund {
 	
 	@PostMapping(value="/requestRefund")
 	@ResponseBody
-	public String setRefundReq(@RequestParam String transactionID,@RequestParam String token)
+	public String setRefundReq(@RequestParam String transactionID,@RequestParam String token) throws SQLException
 	{
 		String msg = null;
 		
 		User user = (User) creator.createUser(token);
+		if(user == null) {
+			return "Wrong token, user doesn't exist";
+		}
 		try {
 			if(set.contains(transactionID)) {
 				msg= "Request Already Sent";							
@@ -60,6 +63,11 @@ public class Refund {
 	{
 		HashMap<String, Map<String,String>> map= new HashMap<>();
 		Admin user = (Admin) creator.createUser(token);
+		if(user == null)  {
+			map.put("Wrong Token", null);
+			return map;
+		}
+		
 		if(user.getPermission().equals("1"))
 		{
 			RefundManager obj=new RefundManager();
@@ -94,13 +102,16 @@ public class Refund {
 	
 	@PostMapping(value="/changeRefundState")
 	@ResponseBody
-	public String changestate(@RequestParam String refundID,@RequestParam  String token, String state)
+	public String changestate(@RequestParam String refundID,@RequestParam  String token, String state) throws SQLException
 	{
 		Admin user = (Admin) creator.createUser(token);
+		if(user == null) {
+			return "Wrong Token";
+		}
 		String r;
 		if(user.getPermission().equals("1"))
 		{
-			if(state=="accept")
+			if(state.equals("accept"))
 			{
 				try {
 					user.changeState("1", refundID);

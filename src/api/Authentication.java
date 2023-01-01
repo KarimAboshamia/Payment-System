@@ -5,7 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,14 +32,14 @@ public class Authentication {
 	    HashMap<String, String> map = new HashMap<>();	
 		if(user != null) {
 		    if(user.getPermission().equals("1")) {
-				String res = email + "," + "Password" + "," + user.getPermission() + "," + user.getUsername();
-
+				String res = email + "," + password + "," + user.getPermission() + "," + user.getUsername();
+				res = encrypt(res);
 				map.put("Token", res);
 		    	
 		    } else {
 		    	User normalUser  = (User)user;
-		    	String res = email + "," + "Password" + "," + user.getPermission() + "," + user.getUsername() + "," + normalUser.getBalance();
-				
+		    	String res = email + "," + password + "," + user.getPermission() + "," + user.getUsername() + "," + normalUser.getBalance();
+				res = encrypt(res);
 				map.put("Token", res);
 		    }   
 		} else {
@@ -61,6 +63,19 @@ public class Authentication {
 			
 		}
 		return map;
+	}
+	
+	public String encrypt(String data) {
+
+
+		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+		encryptor.setPassword("run");
+		String token = encryptor.encrypt(data);
+		System.out.println("Encrypt");
+
+		System.out.println(token);
+		token = token.replaceAll(Pattern.quote("+"), "_");
+		return token;
 	}
 
 }

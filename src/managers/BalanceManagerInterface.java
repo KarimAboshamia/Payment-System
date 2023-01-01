@@ -18,12 +18,11 @@ public abstract class BalanceManagerInterface {
     TransactionModel balanceObject = new TransactionModel(connection.getDBConnection());
     
     public int setBalance(int balance, String username) {
+        balanceObject.addWalletTransaction(username, balance);
 
         balance += Integer.parseInt(userObject.getBalance(username));
         userObject.setBalance(balance, username);
         
-        //TODO Add "Add to wallet transaction"
-        balanceObject.addWalletTransaction(username, balance);
         return balance;
         
     }

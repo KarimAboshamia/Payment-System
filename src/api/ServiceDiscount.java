@@ -21,8 +21,13 @@ public class ServiceDiscount {
 
 	@PostMapping(value="/serviceDiscount")
 	@ResponseBody
-	public Discount serviceDiscount(@RequestParam String name,@RequestParam String token){
+	public Discount serviceDiscount(@RequestParam String name,@RequestParam String token) throws SQLException{
 		User user = (User) creation.createUser(token);
+		if(user == null)  {
+			
+			return null;
+		}
+		
 		try {
 			s = discountCalcObj.calcOverallDiscount(new OverDiscount(), user, name);
 		} catch (SQLException e) {
