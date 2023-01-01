@@ -78,6 +78,7 @@ public class Payment {
 	public String payForProvider(@RequestParam String token, @RequestParam String providerName, @RequestParam String serviceName, @RequestParam String paymentMethod, @RequestBody Map<String,String> inputFields, @RequestParam String activateDiscount) throws SQLException{
 		HashMap<String, String> map = new HashMap<>();
 		AppUser user = creation.createUser(token);
+		
 		User normalUser = null;
 		boolean addDiscount = false;
 		if(user == null) {
@@ -114,12 +115,19 @@ public class Payment {
 					}
 					
 					int paymentMapping = 0;
-					if(paymentMethod.equals("Credit")) {
+					if(paymentMethod.toLowerCase().equals("credit")) {
+						textFieldsInput.put("Credit Details", inputFields.get("Credit Details"));
+						textFieldsInput.put("PIN", inputFields.get("PIN"));
 						paymentMapping = 2;
-					} else if (paymentMethod.equals("Wallet")){
+					} else if (paymentMethod.toLowerCase().equals("wallet")){
 						paymentMapping = 0;
 						
-					} else if (paymentMethod.equals("Delivery")) {
+					} else if (paymentMethod.toLowerCase().equals("delivery")) {
+						if(!service.getCachOnDelivery()) {
+							String error = "You can't Pay for this service on Delivery";
+							return error;
+							
+						}
 						paymentMapping = 1;
 						
 					} else {

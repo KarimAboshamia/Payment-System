@@ -59,8 +59,12 @@ public class TransactionModel {
 	}
 	
 	public void addWalletTransaction(String username, int balance) {
-		String query = "insert into WalletTransaction (Username, Amount) values ('"+username+"','"+balance+")";
-		 
+		String query = "insert into WalletTransaction (Username, Amount) values ('"+username+"','"+balance+"'" + ")";
+		try {
+			statement.executeUpdate(query);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		 
 	}
 	
 	public ResultSet getRefunds(String username)

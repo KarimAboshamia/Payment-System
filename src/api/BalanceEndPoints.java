@@ -1,5 +1,6 @@
 package api;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class BalanceEndPoints {
 	
 	@PostMapping(value="/updateBalance")
 	@ResponseBody
-	public Map<String, String> updateBalance(@RequestParam String token,@RequestParam String card, @RequestParam int PIN, @RequestParam int newBalance){
+	public Map<String, String> updateBalance(@RequestParam String token,@RequestParam String card, @RequestParam int PIN, @RequestParam int newBalance) throws SQLException{
 		System.out.println(token);
 		AppUser user = creation.createUser(token);
 		

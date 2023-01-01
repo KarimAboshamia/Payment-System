@@ -1,5 +1,6 @@
 package api;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +18,15 @@ public class DiscountEndPoint {
 	
 	UserCreator creation = new UserCreator();
 	
-	@PostMapping(value="/discount")
+	@PostMapping(value="/addDiscount")
 	@ResponseBody
-	public  Map<String, String> discount(@RequestParam String token, @RequestParam String discountType, @RequestParam float discountRatio, @RequestParam String serviceName){
+	public  Map<String, String> discount(@RequestParam String token, @RequestParam String discountType, @RequestParam float discountRatio, @RequestParam String serviceName) throws SQLException{
+		System.out.println(token);
 		HashMap<String, String> map = new HashMap<>();
 		AppUser user = creation.createUser(token);
 		if(user == null) {
 			map.put("Error:", "Wrong token");
+			return map;
 		}
 		
 		if(user.getPermission().equals("0")) {

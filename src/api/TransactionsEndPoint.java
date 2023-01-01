@@ -25,6 +25,13 @@ public class TransactionsEndPoint {
 	public Map<String, Map<String, String>> getTransactions(@RequestParam String token) throws SQLException{
 		Map<String, Map<String, String>> systemData = new HashMap<>();
 		User user = (User) creator.createUser(token);
+		
+		if(user == null)  {
+			systemData.put("Wrong Token", null);
+			return systemData;
+		}
+			
+		
 		if(user.getPermission().equals("1")) {
 			systemData.put("Admin Doesn't have access to this end point", null);
 			return systemData;
@@ -51,6 +58,12 @@ public class TransactionsEndPoint {
 	public Map<String, Map<String, String>> getUsers(@RequestParam String token) throws SQLException {
 		Map<String, Map<String, String>> systemData = new HashMap<>();
 		Admin user = (Admin) creator.createUser(token);
+		if(user == null)  {
+			systemData.put("Wrong Token", null);
+			return systemData;
+		}
+		
+		
 		if(user.getPermission().equals("0")) {
 			systemData.put("Normal Users can't list system users", null);
 			return systemData;
@@ -67,6 +80,12 @@ public class TransactionsEndPoint {
 	public Map<String, Map<String, String>> getSystemTransactions(@RequestParam String token, @RequestParam String username) throws SQLException{
 		Map<String, Map<String, String>> systemData = new HashMap<>();
 		Admin user = (Admin) creator.createUser(token);
+		if(user == null)  {
+			systemData.put("Wrong Token", null);
+			return systemData;
+		}
+		
+		
 		if(user.getPermission().equals("0")) {
 			systemData.put("Normal Users can't list system transactions", null);
 			return systemData;

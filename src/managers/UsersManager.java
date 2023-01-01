@@ -3,7 +3,9 @@ package managers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import db.DBConnection;
 import models.UserModel;
@@ -27,6 +29,18 @@ public class UsersManager {
 	    	}
     	}
     	return systemData;
+		
+	}
+	
+	public Set<String> getSystemUserNames() throws SQLException{
+		ResultSet users = usersObj.getSystemUsers();
+		Set<String> systemUsernames = new HashSet<>();
+		if(users != null) {
+			while(users.next()) {
+				systemUsernames.add(users.getString("Username"));
+			}
+		}
+		return systemUsernames;
 		
 	}
 
