@@ -18,11 +18,6 @@ import application.Admin;
 import application.User;
 import communication.DataCommunicator;
 import db.DBConnection;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import managers.RefundManager;
 import scenes.ChangeScenes;
 
