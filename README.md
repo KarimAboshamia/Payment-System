@@ -14,9 +14,9 @@
 5. Add jdbc to build path (If Needed)
 
 # Run
+### API
 Run App.java inside api package
-## Note
-You can run the App.java without JavaFx library, Errors in the GUI will be ignored.
+- You can run the App.java without JavaFx library, Errors in the GUI will be ignored.
 
 # Requirements 
 ## User
