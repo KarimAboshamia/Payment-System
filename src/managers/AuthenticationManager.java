@@ -12,7 +12,7 @@ import application.User;
 import db.DBConnection;
 import models.RefundTransactionModel;
 import models.UserModel;
-//
+
 public class AuthenticationManager {//Manager
 	private DBConnection connection = DBConnection.getDB();
 	
